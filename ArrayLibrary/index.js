@@ -9,4 +9,8 @@ export function ARRAY_LIB(array) {
   this.map = function (callback) {
     return myMap(array, callback);
   };
+
+  this.reduce = function (callback, initialValue) {
+    return myReduce(array, callback, initialValue);
+  };
 }
