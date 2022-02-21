@@ -13,4 +13,8 @@ export function ARRAY_LIB(array) {
   this.reduce = function (callback, initialValue) {
     return myReduce(array, callback, initialValue);
   };
+  
+  this.take = function (callback, initialValue) {
+    return myTake(array, callback, initialValue);
+  };
 }
