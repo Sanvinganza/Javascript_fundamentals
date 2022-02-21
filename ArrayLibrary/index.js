@@ -17,4 +17,8 @@ export function ARRAY_LIB(array) {
   this.take = function (callback, initialValue) {
     return myTake(array, callback, initialValue);
   };
+  
+  this.skip = function(n) {
+    return mySkip(array, n);
+  };
 }
