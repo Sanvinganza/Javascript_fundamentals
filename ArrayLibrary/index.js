@@ -7,49 +7,49 @@ import { myForEach } from "./foreach";
 
 export function ARRAY_LIB() {
   this._array;
-  var self = this;
-
-  function callMethod(args, fn) {
-    if (self._array) {
-      self._array = fn.apply(null, [self._array].concat(args));
+  let self = this;
+  
+  function callMethods(args, fn) {    
+    if(self._array) {
+      self._array = fn.apply(null, [self._array, ...args]);
       return self;
     }
-
+    
     return fn.apply(null, args);
   }
-
-  this.reduce = function (array, callback, initialValue) {
-    return callMethod([array, callback, initialValue], myReduce);
+  
+  this.reduce = (array,callback, initialValue) => {
+    return callMethods([array, callback, initialValue], myReduce);
+  };
+  
+  this.filter = (array,callback) => {
+    return callMethods([array,callback], myFilter);
   };
 
-  this.filter = function (array, callback) {
-    return callMethod([array, callback], myFilter);
+  this.map = (array,callback) => {
+    return callMethods([array,callback], myMap);
+  };
+  
+  this.take = (array, n) => {
+    return callMethods([array, n], myTake);
+  };
+   
+  this.skip = (array, n) => {
+    return callMethods([array, n], mySkip);
   };
 
-  this.map = function (array, callback) {
-    return callMethod([array, callback], myMap);
+  this.foreach = (array,callback) => {
+    return callMethods([array,callback], myForEach);
   };
-
-  this.take = function (array, n) {
-    return callMethod([array, n], myTake);
-  };
-
-  this.skip = function (array, n) {
-    return callMethod([array, n], mySkip);
-  };
-
-  this.foreach = function (array, callback) {
-    return callMethod([array, callback], myForEach);
-  };
-
-  this.chain = function (array) {
+  
+  this.chain = (array) => {
     self._array = array;
     return this;
   };
-
-  this.value = function () {
+  
+  this.value = () => {
     const _ = self._array;
     delete self._array;
     return _;
-  };
+  }
 }
