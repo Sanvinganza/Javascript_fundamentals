@@ -1,7 +1,5 @@
-export function myForEach(array, callback){
-    let i = 0;
-    
-    for(; i < array.length; i++) {
-      callback(array[i]);
-    }
+export function myForEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i]);
+  }
 }

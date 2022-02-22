@@ -1,8 +1,7 @@
 export const myFilter = function (array, callback) {
   let result = [];
-  let i = 0;
 
-  for (; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     if (callback(array[i])) {
       result.push(array[i]);
     }
