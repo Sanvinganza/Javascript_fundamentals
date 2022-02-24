@@ -62,3 +62,4 @@ console.log(ARRAY
             .reduce((acc, el) => acc + el)
             .value());
 console.log(ARRAY.reduce([1,2,4,5], (acc, el) => acc + el))
+console.log(ARRAY.skip([3,4,5,6,7], 6));
