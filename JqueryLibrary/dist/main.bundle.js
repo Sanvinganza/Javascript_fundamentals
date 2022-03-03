@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"$\": () => (/* binding */ $)\n/* harmony export */ });\n/* harmony import */ var _metods_addClass_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./metods/addClass.js */ \"./src/metods/addClass.js\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\n\nvar $ = function $(tag) {\n  var pointTag = document.querySelectorAll(tag);\n  return new myJquery(pointTag);\n};\n\nfunction myJquery(pointTag) {\n  var _this = this;\n\n  this.addClass = function (tag) {\n    (0,_metods_addClass_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(pointTag, tag);\n    return _this;\n  };\n}\n\n$(\"#container .container-inner .test\").addClass(\"color-green\");\n\n//# sourceURL=webpack://myJquery/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"$\": () => (/* binding */ $)\n/* harmony export */ });\n/* harmony import */ var _metods_addClass_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./metods/addClass.js */ \"./src/metods/addClass.js\");\n/* harmony import */ var _metods_removeClass_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./metods/removeClass.js */ \"./src/metods/removeClass.js\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\n\n\nvar $ = function $(tag) {\n  var pointTag = document.querySelectorAll(tag);\n  return new myJquery(pointTag);\n};\n\nfunction myJquery(pointTag) {\n  var _this = this;\n\n  this.addClass = function (tag) {\n    (0,_metods_addClass_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(pointTag, tag);\n    return _this;\n  };\n\n  this.removeClass = function (tag) {\n    (0,_metods_removeClass_js__WEBPACK_IMPORTED_MODULE_1__.removeClass)(pointTag, tag);\n    return _this;\n  };\n}\n\n$(\"#container .container-inner .test\").addClass(\"color-green\").removeClass(\"color-green\");\n\n//# sourceURL=webpack://myJquery/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addClass\": () => (/* binding */ addClass)\n/* harmony export */ });\nvar addClass = function addClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.add(tag);\n  });\n};\n\n//# sourceURL=webpack://myJquery/./src/metods/addClass.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addClass\": () => (/* binding */ addClass)\n/* harmony export */ });\nvar addClass = function addClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.add(tag);\n  });\n  console.log(pointTags);\n};\n\n//# sourceURL=webpack://myJquery/./src/metods/addClass.js?");
+
+/***/ }),
+
+/***/ "./src/metods/removeClass.js":
+/*!***********************************!*\
+  !*** ./src/metods/removeClass.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"removeClass\": () => (/* binding */ removeClass)\n/* harmony export */ });\nvar removeClass = function removeClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.remove(tag);\n  });\n};\n\n//# sourceURL=webpack://myJquery/./src/metods/removeClass.js?");
 
 /***/ }),
 

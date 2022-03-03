@@ -1,4 +1,6 @@
-import { myAddClass } from "./metods/addClass.js";
+import { addClass } from "./metods/addClass.js";
+import { removeClass } from "./metods/removeClass.js";
+
 import './index.css';
 
 export const $ = function (tag) {
@@ -9,14 +11,16 @@ export const $ = function (tag) {
 function myJquery(pointTag) {
   
   this.addClass = (tag) => {
-    myAddClass(pointTag, tag);
+    addClass(pointTag, tag);
     return this;
   };
 
-  this.append = (tag) => {
-    
-    return this
+  this.removeClass = (tag) => {
+    removeClass(pointTag, tag);
+    return this;
   };
 }
 
-$("#container .container-inner .test").addClass("color-green");
+$("#container .container-inner .test")
+.addClass("color-green")
+.removeClass("color-green")
