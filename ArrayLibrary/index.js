@@ -5,7 +5,7 @@ import { mySkip } from "./skip.js";
 import { myTake } from "./take.js";
 import { myForEach } from "./foreach.js";
 
-function callMethods(ARRAY, args, fn) {  
+function callMethod(ARRAY, args, fn) {  
   if(ARRAY._array.length !== 0) {
     ARRAY._array = fn(ARRAY._array, ...args);
     return ARRAY;
@@ -15,40 +15,40 @@ function callMethods(ARRAY, args, fn) {
 }
 
 export let ARRAY = {
-  "_array": [],
+  _array: [],
     
-  "reduce": (array, callback, initialValue) => {
-    return callMethods(ARRAY, [array, callback, initialValue], myReduce);
+  reduce (array, callback, initialValue) {
+    return callMethod(this, [array, callback, initialValue], myReduce);
   },
   
-  "filter": (array, callback) => {
-    return callMethods(ARRAY, [array,callback], myFilter);
+  filter (array, callback) {
+    return callMethod(this, [array,callback], myFilter);
   },
 
-  "map": (array, callback) => {
-    return callMethods(ARRAY, [array,callback], myMap);
+  map (array, callback) {
+    return callMethod(this, [array,callback], myMap);
   },
   
-  "take": (array, n) => {
-    return callMethods(ARRAY, [array, n], myTake);
+  take (array, n) {
+    return callMethod(this, [array, n], myTake);
   },
    
-  "skip": (array, n) => {
-    return callMethods(ARRAY, [array, n], mySkip);
+  skip (array, n) {
+    return callMethod(this, [array, n], mySkip);
   },
 
-  "foreach": (array, callback) => {
-    return callMethods(ARRAY, [array,callback], myForEach);
+  foreach (array, callback) {
+    return callMethod(this, [array,callback], myForEach);
   },
   
-  "chain": (array) => {
-    ARRAY._array = array;
-    return ARRAY;
+  chain (array) {
+    this._array = array;
+    return this;
   },
   
-  "value": () => {
-    const _ = ARRAY._array;
-    ARRAY._array = [];
+  value () {
+    const _ = this._array;
+    this._array = [];
     return _;
   },
 }
