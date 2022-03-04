@@ -1,5 +1,6 @@
-import { addClass } from "./metods/addClass.js";
-import { removeClass } from "./metods/removeClass.js";
+import { addClass } from "./methods/addClass.js";
+import { removeClass } from "./methods/removeClass.js";
+import { text } from "./methods/text.js";
 
 import './index.css';
 
@@ -19,8 +20,17 @@ function myJquery(pointTag) {
     removeClass(pointTag, tag);
     return this;
   };
+
+  this.text = () => {
+    return text(pointTag);
+  }
 }
 
 $("#container .container-inner .test")
 .addClass("color-green")
+
+$("#container .container-inner .test")
 .removeClass("color-green")
+
+console.log($(".test")
+.text())

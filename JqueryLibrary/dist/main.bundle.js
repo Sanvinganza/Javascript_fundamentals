@@ -16,27 +16,37 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"$\": () => (/* binding */ $)\n/* harmony export */ });\n/* harmony import */ var _metods_addClass_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./metods/addClass.js */ \"./src/metods/addClass.js\");\n/* harmony import */ var _metods_removeClass_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./metods/removeClass.js */ \"./src/metods/removeClass.js\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\n\n\nvar $ = function $(tag) {\n  var pointTag = document.querySelectorAll(tag);\n  return new myJquery(pointTag);\n};\n\nfunction myJquery(pointTag) {\n  var _this = this;\n\n  this.addClass = function (tag) {\n    (0,_metods_addClass_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(pointTag, tag);\n    return _this;\n  };\n\n  this.removeClass = function (tag) {\n    (0,_metods_removeClass_js__WEBPACK_IMPORTED_MODULE_1__.removeClass)(pointTag, tag);\n    return _this;\n  };\n}\n\n$(\"#container .container-inner .test\").addClass(\"color-green\").removeClass(\"color-green\");\n\n//# sourceURL=webpack://myJquery/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"$\": () => (/* binding */ $)\n/* harmony export */ });\n/* harmony import */ var _methods_addClass_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/addClass.js */ \"./src/methods/addClass.js\");\n/* harmony import */ var _methods_removeClass_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/removeClass.js */ \"./src/methods/removeClass.js\");\n/* harmony import */ var _methods_text_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/text.js */ \"./src/methods/text.js\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\n\n\n\nvar $ = function $(tag) {\n  var pointTag = document.querySelectorAll(tag);\n  return new myJquery(pointTag);\n};\n\nfunction myJquery(pointTag) {\n  var _this = this;\n\n  this.addClass = function (tag) {\n    (0,_methods_addClass_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(pointTag, tag);\n    return _this;\n  };\n\n  this.removeClass = function (tag) {\n    (0,_methods_removeClass_js__WEBPACK_IMPORTED_MODULE_1__.removeClass)(pointTag, tag);\n    return _this;\n  };\n\n  this.text = function () {\n    return (0,_methods_text_js__WEBPACK_IMPORTED_MODULE_2__.text)(pointTag);\n  };\n}\n\n$(\"#container .container-inner .test\").addClass(\"color-green\").removeClass(\"color-green\");\nconsole.log($(\".test\").text());\n\n//# sourceURL=webpack://myJquery/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/metods/addClass.js":
-/*!********************************!*\
-  !*** ./src/metods/addClass.js ***!
-  \********************************/
+/***/ "./src/methods/addClass.js":
+/*!*********************************!*\
+  !*** ./src/methods/addClass.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addClass\": () => (/* binding */ addClass)\n/* harmony export */ });\nvar addClass = function addClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.add(tag);\n  });\n  console.log(pointTags);\n};\n\n//# sourceURL=webpack://myJquery/./src/metods/addClass.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addClass\": () => (/* binding */ addClass)\n/* harmony export */ });\nvar addClass = function addClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.add(tag);\n  });\n  console.log(pointTags);\n};\n\n//# sourceURL=webpack://myJquery/./src/methods/addClass.js?");
 
 /***/ }),
 
-/***/ "./src/metods/removeClass.js":
-/*!***********************************!*\
-  !*** ./src/metods/removeClass.js ***!
-  \***********************************/
+/***/ "./src/methods/removeClass.js":
+/*!************************************!*\
+  !*** ./src/methods/removeClass.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"removeClass\": () => (/* binding */ removeClass)\n/* harmony export */ });\nvar removeClass = function removeClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.remove(tag);\n  });\n};\n\n//# sourceURL=webpack://myJquery/./src/metods/removeClass.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"removeClass\": () => (/* binding */ removeClass)\n/* harmony export */ });\nvar removeClass = function removeClass(pointTags, tag) {\n  pointTags.forEach(function (item) {\n    item.classList.remove(tag);\n  });\n};\n\n//# sourceURL=webpack://myJquery/./src/methods/removeClass.js?");
+
+/***/ }),
+
+/***/ "./src/methods/text.js":
+/*!*****************************!*\
+  !*** ./src/methods/text.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"text\": () => (/* binding */ text)\n/* harmony export */ });\nvar text = function text(pointTags) {\n  var result = '';\n  pointTags.forEach(function (item) {\n    result += ' ' + item.innerHTML;\n  });\n  return result;\n};\n\n//# sourceURL=webpack://myJquery/./src/methods/text.js?");
 
 /***/ }),
 
