@@ -1,6 +1,7 @@
 import { addClass } from "./methods/addClass.js";
 import { removeClass } from "./methods/removeClass.js";
 import { text } from "./methods/text.js";
+import { attr } from "./methods/attr.js";
 
 import './index.css';
 
@@ -23,14 +24,18 @@ function myJquery(pointTag) {
 
   this.text = () => {
     return text(pointTag);
+  };
+
+  this.attr = (attrName) => {
+    return attr(pointTag, attrName);
   }
 }
 
-$("#container .container-inner .test")
-.addClass("color-green")
+// $("#container .container-inner .test")
+// .addClass("color-green")
 
-$("#container .container-inner .test")
-.removeClass("color-green")
+// $("#container .container-inner .test")
+// .removeClass("color-green")
 
-console.log($(".test")
+console.log($(".container-inner")
 .text())

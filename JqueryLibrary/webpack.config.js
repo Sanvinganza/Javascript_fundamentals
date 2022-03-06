@@ -13,7 +13,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'webpack Boilerplate',
+            title: 'my Jquery',
             template: path.resolve(__dirname, './src/template.html'),
             filename: 'index.html',
         }),
