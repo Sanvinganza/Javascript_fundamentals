@@ -4,6 +4,7 @@ import { text } from "./methods/text.js";
 import { attr } from "./methods/attr.js";
 
 import './index.css';
+import { append } from "./methods/append.js";
 
 export const $ = function (tag) {
   return new myJquery(document.querySelectorAll(tag));
@@ -28,6 +29,10 @@ function myJquery(pointTag) {
   this.attr = (attrName, attrValue) => {
     return attr(pointTag, attrName, attrValue);
   }
+
+  this.append = (content) => {
+    return append(pointTag, content);
+  }
 }
 
 // $("#container .container-inner .test")
@@ -37,5 +42,7 @@ function myJquery(pointTag) {
 // .removeClass("color-green")
 
 //return undefiend, should string
-console.log($(".test")
-.attr('title', 'new title'))
+// console.log($(".test")
+// .attr('title', 'new title'))
+
+$('.test').append('<h2>new content</h2>')
