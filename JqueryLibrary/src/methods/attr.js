@@ -1,11 +1,7 @@
-export const attr = (pointTags, tag, attrValue) => {
-    pointTags.forEach( item => {
-        if(item.attributes[tag]) {
-            if(attrValue) {
-                item.attributes[tag].value = attrValue;
-            }
-            
-            return item.attributes[tag].value;
-        }
-    })     
-}
+export const attr = (pointTags, attribute, attrValue) => {
+    if (attrValue) {
+        pointTags[0].setAttribute(attribute, attrValue);
+    }
+
+  return pointTags[0].getAttribute(attribute);
+};
