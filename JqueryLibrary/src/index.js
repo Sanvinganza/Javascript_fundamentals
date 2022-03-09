@@ -5,6 +5,7 @@ import { attr } from "./methods/attr.js";
 
 import './index.css';
 import { append } from "./methods/append.js";
+import { remove } from "./methods/remove.js";
 
 export const $ = function (tag) {
   return new myJquery(document.querySelectorAll(tag));
@@ -33,6 +34,10 @@ function myJquery(pointTag) {
   this.append = (content) => {
     return append(pointTag, content);
   }
+
+  this.remove = () => {
+    return remove(pointTag);
+  }
 }
 
 // $("#container .container-inner .test")
@@ -45,4 +50,6 @@ function myJquery(pointTag) {
 // console.log($(".test")
 // .attr('title', 'new title'))
 
-$('.test').append('<h2>new content</h2>')
+$('.test').append('<h2>new content</h2>');
+
+$('h2').remove();
