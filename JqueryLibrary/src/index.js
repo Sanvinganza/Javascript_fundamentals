@@ -6,6 +6,7 @@ import { attr } from "./methods/attr.js";
 import { append } from "./methods/append.js";
 import { remove } from "./methods/remove.js";
 import { children } from "./methods/children.js";
+import { empty } from './methods/empty';
 
 export const $ = function (tag) {
   return new myJquery(document.querySelectorAll(tag));
@@ -44,6 +45,10 @@ export function myJquery(pointTag) {
     _pointTag = children(_pointTag, child);
      return this;
    }
+
+   this.empty = () => {
+      return empty(_pointTag);
+   }
 }
 
 // $("#container .container-inner .test")
@@ -53,12 +58,12 @@ export function myJquery(pointTag) {
 // .removeClass("color-green")
 
 //return undefiend, should string
-console.log($(".test")
-.attr('title')
-)
-console.log($(".test")
-.attr('title', 'new title')
-)
+// console.log($(".test")
+// .attr('title')
+// )
+// console.log($(".test")
+// .attr('title', 'new title')
+// )
 
 
 // $('.test')
@@ -70,3 +75,5 @@ console.log($(".test")
 // .children('.example')
 // .addClass('color-red')
 // )
+
+console.log($('.example').empty())
