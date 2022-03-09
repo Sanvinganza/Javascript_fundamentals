@@ -1,4 +1,4 @@
-import './index.css';
+import "./index.css";
 import { addClass } from "./methods/addClass.js";
 import { removeClass } from "./methods/removeClass.js";
 import { text } from "./methods/text.js";
@@ -6,7 +6,8 @@ import { attr } from "./methods/attr.js";
 import { append } from "./methods/append.js";
 import { remove } from "./methods/remove.js";
 import { children } from "./methods/children.js";
-import { empty } from './methods/empty';
+import { empty } from "./methods/empty";
+import { css } from "./methods/css";
 
 export const $ = function (tag) {
   return new myJquery(document.querySelectorAll(tag));
@@ -31,24 +32,28 @@ export function myJquery(pointTag) {
 
   this.attr = (attrName, attrValue) => {
     return attr(_pointTag, attrName, attrValue);
-  }
+  };
 
   this.append = (content) => {
     return append(_pointTag, content);
-  }
+  };
 
   this.remove = () => {
     return remove(_pointTag);
-  }
+  };
 
-   this.children = (child) => {
+  this.children = (child) => {
     _pointTag = children(_pointTag, child);
-     return this;
-   }
+    return this;
+  };
 
-   this.empty = () => {
-      return empty(_pointTag);
-   }
+  this.empty = () => {
+    return empty(_pointTag);
+  };
+
+  this.css = (style, valueStyle) => {
+    return css(_pointTag, style, valueStyle);
+  }
 }
 
 // $("#container .container-inner .test")
@@ -65,7 +70,6 @@ export function myJquery(pointTag) {
 // .attr('title', 'new title')
 // )
 
-
 // $('.test')
 // .append('<h2>new content</h2>');
 
@@ -76,4 +80,4 @@ export function myJquery(pointTag) {
 // .addClass('color-red')
 // )
 
-console.log($('.example').empty())
+console.log($(".example").css('background-color', 'orange'));
