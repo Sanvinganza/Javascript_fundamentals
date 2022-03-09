@@ -6,8 +6,7 @@ import { attr } from "./methods/attr.js";
 import './index.css';
 
 export const $ = function (tag) {
-  let pointTag = document.querySelectorAll(tag);
-  return new myJquery(pointTag);
+  return new myJquery(document.querySelectorAll(tag));
 };
 
 function myJquery(pointTag) {
@@ -37,5 +36,6 @@ function myJquery(pointTag) {
 // $("#container .container-inner .test")
 // .removeClass("color-green")
 
+//return undefiend, should string
 console.log($(".test")
-.attr('class', 'color-green'))
+.attr('title', 'new title'))
