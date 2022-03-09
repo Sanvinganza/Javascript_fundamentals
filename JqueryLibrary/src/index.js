@@ -8,6 +8,7 @@ import { remove } from "./methods/remove.js";
 import { children } from "./methods/children.js";
 import { empty } from "./methods/empty";
 import { css } from "./methods/css";
+import { click } from "./methods/click";
 
 export const $ = function (tag) {
   return new myJquery(document.querySelectorAll(tag));
@@ -53,6 +54,10 @@ export function myJquery(pointTag) {
 
   this.css = (style, valueStyle) => {
     return css(_pointTag, style, valueStyle);
+  };
+
+  this.click = (fn) => {
+    click(_pointTag, fn);
   }
 }
 
@@ -80,4 +85,8 @@ export function myJquery(pointTag) {
 // .addClass('color-red')
 // )
 
-console.log($(".example").css('background-color', 'orange'));
+// console.log($(".example").css('background-color', 'orange'));
+
+// $('.test').click(() => {
+//   alert( "Handler for .click() called." );
+// });
