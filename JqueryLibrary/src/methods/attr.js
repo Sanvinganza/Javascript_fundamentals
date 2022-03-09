@@ -1,8 +1,15 @@
-export const attr = (pointTags, tag) => {
-    let result;
-    pointTags.forEach(item => {
-        result = item.attributes.getNamedItem(tag);
-        console.log(result)
-        if(result) return result;
-    });
+export const attr = (pointTags, tag, attrValue) => {
+    console.log(pointTags)
+
+    pointTags.forEach( item => {
+
+        console.log(item.attributes[tag])
+        if(item.attributes[tag]) {
+            if(attrValue) {
+                item.attributes[tag].value = attrValue;
+            }
+            console.log(item.attributes[tag].value)
+            return item.attributes[tag].value;
+        }
+    })     
 }

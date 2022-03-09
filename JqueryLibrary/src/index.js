@@ -26,8 +26,8 @@ function myJquery(pointTag) {
     return text(pointTag);
   };
 
-  this.attr = (attrName) => {
-    return attr(pointTag, attrName);
+  this.attr = (attrName, attrValue) => {
+    return attr(pointTag, attrName, attrValue);
   }
 }
 
@@ -37,5 +37,5 @@ function myJquery(pointTag) {
 // $("#container .container-inner .test")
 // .removeClass("color-green")
 
-console.log($(".container-inner")
-.text())
+console.log($(".test")
+.attr('class', 'color-green'))
