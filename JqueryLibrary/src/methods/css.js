@@ -1,7 +1,7 @@
 export const css = (pointTag, newStyle, valueStyle) => {
     if(valueStyle) {
         pointTag.forEach(item => {
-            item.style[newStyle] = valueStyle;
+            item.style.setProperty(newStyle, valueStyle);
         });
     }
     
