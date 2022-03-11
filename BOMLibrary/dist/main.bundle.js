@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _methods_printSize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/printSize */ \"./src/methods/printSize.js\");\n\n\n(0,_methods_printSize__WEBPACK_IMPORTED_MODULE_1__.printSize)();\n\n//# sourceURL=webpack://BOMLibrary/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _methods_printSize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/printSize */ \"./src/methods/printSize.js\");\n/* harmony import */ var _methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/setUrlParameter */ \"./src/methods/setUrlParameter.js\");\n\n\n // printSize();\n\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__.setUrlParameter)(\"x\", 10);\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__.setUrlParameter)(\"y\", 41);\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__.setUrlParameter)(\"x\", 22);\n\n//# sourceURL=webpack://BOMLibrary/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ind
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"printSize\": () => (/* binding */ printSize)\n/* harmony export */ });\nvar printSize = function printSize() {\n  window.addEventListener('resize', function (event) {\n    console.log(\"h: \".concat(screen.height, \" w: \").concat(screen.width));\n  }, false);\n};\n\n//# sourceURL=webpack://BOMLibrary/./src/methods/printSize.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"printSize\": () => (/* binding */ printSize)\n/* harmony export */ });\nvar printSize = function printSize() {\n  window.addEventListener('resize', function () {\n    console.log(\"h: \".concat(screen.height, \" w: \").concat(screen.width));\n  });\n};\n\n//# sourceURL=webpack://BOMLibrary/./src/methods/printSize.js?");
+
+/***/ }),
+
+/***/ "./src/methods/setUrlParameter.js":
+/*!****************************************!*\
+  !*** ./src/methods/setUrlParameter.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"setUrlParameter\": () => (/* binding */ setUrlParameter)\n/* harmony export */ });\nvar setUrlParameter = function setUrlParameter(param, value) {\n  var params = new URLSearchParams(window.location.search);\n  params.set(param, value);\n  history.replaceState(null, null, \"?\" + params.toString());\n};\n\n//# sourceURL=webpack://BOMLibrary/./src/methods/setUrlParameter.js?");
 
 /***/ }),
 
