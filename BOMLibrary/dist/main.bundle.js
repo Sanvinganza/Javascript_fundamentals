@@ -16,7 +16,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _methods_printSize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/printSize */ \"./src/methods/printSize.js\");\n/* harmony import */ var _methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/setUrlParameter */ \"./src/methods/setUrlParameter.js\");\n\n\n // printSize();\n\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__.setUrlParameter)(\"x\", 10);\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__.setUrlParameter)(\"y\", 41);\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_2__.setUrlParameter)(\"x\", 22);\n\n//# sourceURL=webpack://BOMLibrary/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _methods_navButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/navButtons */ \"./src/methods/navButtons.js\");\n/* harmony import */ var _methods_printSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/printSize */ \"./src/methods/printSize.js\");\n/* harmony import */ var _methods_setUrlHashParameter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./methods/setUrlHashParameter */ \"./src/methods/setUrlHashParameter.js\");\n/* harmony import */ var _methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./methods/setUrlParameter */ \"./src/methods/setUrlParameter.js\");\n\n\n\n\n // printSize();\n// setUrlParameter(\"x\", 10);\n\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_4__.setUrlParameter)(\"y\", 41);\n(0,_methods_setUrlParameter__WEBPACK_IMPORTED_MODULE_4__.setUrlParameter)(\"x\", 22);\n(0,_methods_navButtons__WEBPACK_IMPORTED_MODULE_1__.navButtons)(); // setUrlHashParameter(\"x\", 12)\n// setUrlHashParameter(\"y\", 18)\n// setUrlHashParameter(\"x\", 2)\n\n//# sourceURL=webpack://BOMLibrary/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/methods/navButtons.js":
+/*!***********************************!*\
+  !*** ./src/methods/navButtons.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"navButtons\": () => (/* binding */ navButtons)\n/* harmony export */ });\nvar navButtons = function navButtons() {\n  var prevButton = document.createElement(\"button\");\n  prevButton.innerHTML = \"prev page\";\n  document.body.appendChild(prevButton);\n\n  prevButton.onclick = function () {\n    return history.back();\n  };\n\n  var nextButton = document.createElement(\"button\");\n  nextButton.innerHTML = \"next page\";\n  document.body.appendChild(nextButton);\n\n  nextButton.onclick = function () {\n    return history.forward();\n  };\n};\n\n//# sourceURL=webpack://BOMLibrary/./src/methods/navButtons.js?");
 
 /***/ }),
 
@@ -27,6 +37,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ind
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"printSize\": () => (/* binding */ printSize)\n/* harmony export */ });\nvar printSize = function printSize() {\n  window.addEventListener('resize', function () {\n    console.log(\"h: \".concat(screen.height, \" w: \").concat(screen.width));\n  });\n};\n\n//# sourceURL=webpack://BOMLibrary/./src/methods/printSize.js?");
+
+/***/ }),
+
+/***/ "./src/methods/setUrlHashParameter.js":
+/*!********************************************!*\
+  !*** ./src/methods/setUrlHashParameter.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"setUrlHashParameter\": () => (/* binding */ setUrlHashParameter)\n/* harmony export */ });\nvar setUrlHashParameter = function setUrlHashParameter(param, value) {\n  window.location.hash = \"\".concat(param, \"=\").concat(value);\n};\n\n//# sourceURL=webpack://BOMLibrary/./src/methods/setUrlHashParameter.js?");
 
 /***/ }),
 
