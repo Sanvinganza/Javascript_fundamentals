@@ -7,15 +7,14 @@ import { setUrlParameter } from "./methods/setUrlParameter";
 
 // printSize();
 
-// setUrlParameter("x", 10);
-// setUrlParameter("y", 41);
-// setUrlParameter("x", 22);
+setUrlParameter("x", 10);
+setUrlParameter("y", 41);
+setUrlParameter("x", 22);
 
 // navButtons();
 
-browserInfo();
+// browserInfo();
 
-// setUrlHashParameter("x", 12)
-// setUrlHashParameter("y", 18)
-// setUrlHashParameter("x", 2)
-
+setUrlHashParameter("x", 12)
+setUrlHashParameter("y", 18)
+setUrlHashParameter("x", 2)
