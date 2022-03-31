@@ -1,3 +1,4 @@
-h1 {
+h1, #btn {
     color: orange;
+    background: url('./assets/pt.png') no-repeat;
 }

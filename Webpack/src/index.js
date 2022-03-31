@@ -7,7 +7,10 @@ import moment from "moment";
 function App() {
     const [state, setState] = useState(true);
 
-    return <button onClick={() => setState(!state)}>{state.toString()}</button>;
+    return <>
+      
+      <button onClick={() => setState(!state)}>{state.toString()}</button>;
+    </>
 }
 
 const getUserModule = () => import("./common/usersAPI");
@@ -19,7 +22,7 @@ btn.addEventListener("click", () => {
     getUsers().then(json => console.table(json));
   });
 
-  console.log(moment().date())
+  console.log("today: " + moment().date())
 });
 
 render(<App />, document.getElementById("root"));
