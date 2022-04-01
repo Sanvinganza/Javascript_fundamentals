@@ -7,7 +7,7 @@ interface IProgressBar {
 const ProgressBar: FC<IProgressBar> = ({value}: IProgressBar) => {
     return (
         <>
-            <div className="container">
+            <div className="progress">
                 <div 
                     className="container-inner"
                     style={{width: `${value}%`}}>

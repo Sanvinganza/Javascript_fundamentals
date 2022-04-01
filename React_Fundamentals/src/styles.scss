@@ -6,13 +6,13 @@ h1 {
   background-color: $bg;
 }
 
-.container {
+.progress {
   margin: 10px;
   max-width: 500px;
   border: 2px black solid;
 }
 
-.container-inner {
+.progress > .container-inner {
   height: 15px;
   background-color: orange;
 }
