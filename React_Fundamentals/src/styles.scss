@@ -6,13 +6,13 @@ h1 {
   background-color: $bg;
 }
 
-.progress {
+.progress_bar {
   margin: 10px;
   max-width: 500px;
-  border: 2px black solid;
+  border: 1px black solid;
 }
 
-.progress > .container-inner {
+.progress_bar > .progress_bar-inner {
   height: 15px;
   background-color: orange;
 }

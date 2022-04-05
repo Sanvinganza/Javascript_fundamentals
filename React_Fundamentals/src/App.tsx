@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { hot } from "react-hot-loader/root";
-import ProgressBar from './ProgressBar';
+import { ProgressBarForm } from './common/ProgressBarForm';
 
 class App extends React.Component {
+
   render() {
     return (
-      <>
-        <ProgressBar value={10}/> 
-      </>
+      <ProgressBarForm />
     );
   }
 }
