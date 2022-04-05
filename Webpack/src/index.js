@@ -3,15 +3,7 @@ import "./style.scss";
 import React, { useState } from "react";
 import { render } from "react-dom";
 import moment from "moment";
-
-function App() {
-    const [state, setState] = useState(true);
-
-    return <>
-      
-      <button onClick={() => setState(!state)}>{state.toString()}</button>;
-    </>
-}
+import Image from "./assets/pt.png";
 
 const getUserModule = () => import("./common/usersAPI");
 
@@ -24,5 +16,14 @@ btn.addEventListener("click", () => {
 
   console.log("today: " + moment().date())
 });
+
+function App() {
+  const [state, setState] = useState(true);
+  return <>
+    <img src={Image} alt="torchlight in the sky" />
+    <h1>IMAGES</h1>
+    <button onClick={() => setState(!state)}>{state.toString()}</button>
+  </>
+}
 
 render(<App />, document.getElementById("root"));
