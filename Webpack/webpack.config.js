@@ -10,7 +10,6 @@ const BrotliWebpackPlugin = require("brotli-webpack-plugin");
 
 const isDev = process.env.NODE_ENV === "development";
 const isProd = !isDev;
-const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 const optimization = () => {
   const config = {
     splitChunks: {
@@ -58,19 +57,19 @@ const plugins = () => {
 
   if (isProd) {
     base.push(
+      new BrotliWebpackPlugin({
+        asset: '[path].br[query]',
+        test: /\.(js|css|html|png)$/,
+        threshold: 10240,
+        minRatio: 0.8
+      })
+    );
+  } else {
+    base.push(
       new BundleAnalyzerPlugin({
         analyzerMode: "static",
         openAnalyzer: false,
         analyzerPort: 3002,
-      })
-    );
-
-    base.push(
-      new BrotliWebpackPlugin({
-        asset: '[path].br[query]',
-        test: /\.(js|css|html|svg)$/,
-        threshold: 10240,
-        minRatio: 0.8
       })
     );
   }
@@ -125,7 +124,7 @@ module.exports = {
   context: path.resolve(__dirname, "src"),
   devtool: isDev ? "source-map" : "eval",
   optimization: optimization(),
-  mode: "development",
+  mode: isDev ? "development" : "production",
   devServer: {
     port: 3000,
     hot: isDev,
@@ -136,7 +135,7 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: [".js", ".json", ".png"],
+    extensions: [".js", ".json"],
   },
   output: {
     filename: "[name].[contenthash].bundle.js",
@@ -152,9 +151,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: jsLoaders(),
       },
       {
         test: /\.less$/,
