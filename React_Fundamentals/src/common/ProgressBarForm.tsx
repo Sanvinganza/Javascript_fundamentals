@@ -7,7 +7,13 @@ export const ProgressBarForm = () => {
     return <form>
         <fieldset>
             <legend>Progress bar</legend>
-            <input onChange={(e) => {
+            <input 
+                type="number"
+                pattern="\d+"
+                min={0}
+                max={100}
+                step={1}
+                onChange={(e) => {
                 setValue(+e.target.value)
             }}/>
             <ProgressBar value={value}/>

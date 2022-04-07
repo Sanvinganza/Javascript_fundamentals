@@ -16,3 +16,7 @@ h1 {
   height: 15px;
   background-color: orange;
 }
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
