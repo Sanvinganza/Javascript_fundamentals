@@ -4,8 +4,9 @@ import ProgressBar from "./ProgressBar"
 export const ProgressBarForm = () => {
     const [value, setValue] = useState(0);
     const onInputChange = useCallback((e) => {
-        if (e.target.value < 101 && e.target.value >= 0)
+        if (e.target.value < 101 && e.target.value >= 0) {
             setValue(e.target.value);
+        }
     }, []);
 
     return <form>
@@ -19,6 +20,7 @@ export const ProgressBarForm = () => {
                 max={100}
                 step={1}
                 onChange={onInputChange}
+                value={value}
             />
             <ProgressBar value={value} />
         </fieldset>
