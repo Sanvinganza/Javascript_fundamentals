@@ -5,8 +5,6 @@ interface IProgressBar {
 }
 
 const ProgressBar: FC<IProgressBar> = ({ value = 0 }: IProgressBar) => {
-    if(value && value > 100) value = 100;
-
     return (
         <div className="progress_bar">
             <div

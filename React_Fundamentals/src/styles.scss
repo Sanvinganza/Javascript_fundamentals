@@ -11,7 +11,9 @@ h1 {
   max-width: 500px;
   border: 1px black solid;
 }
-
+.input-progress_bar {
+  width: 100px;
+}
 .progress_bar > .progress_bar-inner {
   height: 15px;
   background-color: orange;
