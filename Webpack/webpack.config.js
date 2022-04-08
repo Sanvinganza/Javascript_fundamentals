@@ -120,15 +120,17 @@ const jsLoaders = () => {
   return loaders;
 };
 
+const server = {
+  port: 3000,
+  hot: isDev,
+}
+
 module.exports = {
   context: path.resolve(__dirname, "src"),
   devtool: isDev ? "source-map" : "eval",
   optimization: optimization(),
   mode: isDev ? "development" : "production",
-  devServer: {
-    port: 3000,
-    hot: isDev,
-  },
+  devServer: isDev? server: {},
   entry: {
     index: {
       import: path.resolve(__dirname, "./src/index.js"),
