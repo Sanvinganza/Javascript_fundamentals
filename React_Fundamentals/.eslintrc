@@ -1,0 +1,38 @@
+{
+    "parser": "@babel/eslint-parser",
+    "plugins": [
+        "react"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "settings": {
+      "react": {
+        "version": "16.3"
+      }
+    },
+    "rules": {
+        "consistent-return": 2,
+        "indent"           : [1, 2],
+        "no-else-return"   : 1,
+        "semi"             : [1, "always"],
+        "space-unary-ops"  : 2,
+        "no-alert"         : 0,
+        "no-useless-escape": 0,
+        "eqeqeq"           : 1,
+        "react/react-in-jsx-scope": "off"
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    }
+}

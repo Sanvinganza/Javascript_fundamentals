@@ -8,7 +8,6 @@ export const ProgressBarForm = () => {
             setValue(e.target.value);
         }
     }, []);
-
     return <form>
         <fieldset>
             <legend>Progress bar</legend>
