@@ -1,0 +1,24 @@
+$primary-color: white;
+$bg: black;
+
+h1 {
+  color: $primary-color;
+  background-color: $bg;
+}
+
+.progress_bar {
+  margin: 10px;
+  max-width: 500px;
+  border: 1px black solid;
+}
+.input-progress_bar {
+  width: 100px;
+}
+.progress_bar > .progress_bar-inner {
+  height: 15px;
+  background-color: orange;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
