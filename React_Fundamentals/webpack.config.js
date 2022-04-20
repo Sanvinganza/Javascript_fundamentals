@@ -62,7 +62,9 @@ const config = {
       openAnalyzer: false,
     }),
     new ESLintPlugin({
-      context: "./src"
+      fix: true,
+      extensions: "tsx",
+      context: "./src/**/*.tsx",
     })
   ],
   optimization: {
