@@ -11,9 +11,11 @@ h1 {
   max-width: 500px;
   border: 1px black solid;
 }
+
 .input-progress_bar {
   width: 100px;
 }
+
 .progress_bar > .progress_bar-inner {
   height: 15px;
   background-color: orange;
@@ -21,4 +23,10 @@ h1 {
 
 input:invalid {
   box-shadow: 0 0 5px 1px red;
+}
+
+.search-input {
+  @extend %progress_bar;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: medium;
 }

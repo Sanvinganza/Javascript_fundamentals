@@ -86,7 +86,8 @@ const config = {
     extensions: [
       '.tsx',
       '.ts',
-      '.js'
+      '.js',
+      '.jsx'
     ],
     alias: {
       'react-dom': '@hot-loader/react-dom'
@@ -94,7 +95,7 @@ const config = {
   }
 };
 
-export default (env, argv) => {
+module.exports = (argv) => {
   if (argv.hot) {
     // Cannot use 'contenthash' when hot reloading is enabled.
     config.output.filename = '[name].[hash].js';
