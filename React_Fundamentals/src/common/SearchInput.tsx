@@ -1,37 +1,51 @@
-import { ChangeEvent, FC } from "react";
-
-type IOnSearch = (e?: { target: HTMLInputElement }) => void;
+import { FC, useCallback, useState } from "react";
 
 export enum ESearchIputModes {
-    Immediate = "Immediate",
-    onPress = "onPress",
-    withDelay = "withDelay"
+  immediate = "immediate",
+  onPress = "onPress",
+  withDelay = "withDelay"
 }
 
 export interface ISearchInput {
-    placeholder: string,
-    mode: ESearchIputModes,
-    onSearch: IOnSearch
+  placeholder: string,
+  mode: ESearchIputModes,
+  onSearch: (value: string) => void
 }
 
 export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: ISearchInput) => {
-  const onChange =
-        mode === "Immediate" ? (e: { target: HTMLInputElement }) => onSearch(e) :
-          mode === "withDelay" ? ((e: ChangeEvent) => setTimeout(onSearch(e), 1000)) :
-            undefined;
+  const [searchValue, setSearchValue] = useState("");
+  
+  const handleKeyDown = useCallback((e) => {
+    if(e.key === 13 && ESearchIputModes.onPress === mode) {
+      onSearch(searchValue);
+    }
+    return false;
+  },[searchValue]);
 
-  const onClick = mode === "onPress" ? (e: { target: HTMLInputElement }) => onSearch(e) : undefined;
+  const onChange = useCallback((e) => {
+    console.log(e.target.value);
+    switch (mode) {
+    case ESearchIputModes.immediate:
+      onSearch(e.target.value);
+      break;
+    case ESearchIputModes.withDelay:
+      setTimeout(() => onSearch(e.target.value), 1000); break;
+    case ESearchIputModes.onPress:
+      setSearchValue(e.target.value);
+      break;
+    }
+  }, [searchValue, mode]);
 
   return (
     <form>
       <fieldset>
         <legend>Search Input</legend>
-        <label htmlFor="search-input">search-input</label>
         <input
           id="search-input"
           placeholder={placeholder}
           onChange={onChange}
-          onClick={onClick}
+          type="search"
+          onKeyDown={handleKeyDown}
         />
       </fieldset>
     </form>
