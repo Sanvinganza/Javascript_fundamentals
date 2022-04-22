@@ -16,20 +16,21 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
   const [searchValue, setSearchValue] = useState("");
   
   const handleKeyDown = useCallback((e) => {
-    if(e.key === 13 && ESearchIputModes.onPress === mode) {
+    if(e.key.toString() === 'Enter' && ESearchIputModes.onPress === mode) {
       onSearch(searchValue);
     }
-    return false;
+    
   },[searchValue]);
 
   const onChange = useCallback((e) => {
-    console.log(e.target.value);
+    e.preventDefault();
     switch (mode) {
     case ESearchIputModes.immediate:
       onSearch(e.target.value);
       break;
     case ESearchIputModes.withDelay:
-      setTimeout(() => onSearch(e.target.value), 1000); break;
+      setTimeout(() => onSearch(e.target.value), 1000);
+      break;
     case ESearchIputModes.onPress:
       setSearchValue(e.target.value);
       break;

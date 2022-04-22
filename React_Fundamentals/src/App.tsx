@@ -27,7 +27,7 @@ export default function App() {
       <input id="withDelay" type='checkbox' onClick={() =>
         setMode(SearchIputModes.withDelay)
       }/>
-      <input type='checkbox' onClick={() =>
+      <input id="onPress" type='checkbox' onClick={() =>
         setMode(SearchIputModes.onPress)
       }/>
       {
