@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react';
-import { ProgressBarForm } from './common/ProgressBarForm';
 import { SearchInput } from './common/SearchInput';
 import { ESearchIputModes as SearchIputModes } from './common/SearchInput';
 
 export default function App() {
-  const array = ['word', 'noun'];
+  const array = ['word', 'noun', 'hello', 'world'];
   const [searchResult, setSearchResult] = useState(array);
   const [mode, setMode] = useState(SearchIputModes.withDelay);
 
@@ -13,27 +12,31 @@ export default function App() {
   }, [searchResult, array]);
   return (
     <>
-      <ProgressBarForm />
       <SearchInput
         placeholder="Search"
         mode={mode}
         onSearch={onSearchHandler}
       />
-      
-      <input id="immediate" type='checkbox' onClick={() =>
-        setMode(SearchIputModes.immediate)
-      }/>
+      <form className="search-input_form">
+        <label htmlFor="immediate">immediate</label>
+        <input id="immediate" type='checkbox' onClick={() =>
+          setMode(SearchIputModes.immediate)
+        } />
 
-      <input id="withDelay" type='checkbox' onClick={() =>
-        setMode(SearchIputModes.withDelay)
-      }/>
-      <input id="onPress" type='checkbox' onClick={() =>
-        setMode(SearchIputModes.onPress)
-      }/>
+        <label htmlFor="withDelay">withDelay</label>
+        <input id="withDelay" type='checkbox' onClick={() =>
+          setMode(SearchIputModes.withDelay)
+        } />
+
+        <label htmlFor="onPress">onPress</label>
+        <input id="onPress" type='checkbox' onClick={() =>
+          setMode(SearchIputModes.onPress)
+        } />
+      </form>
       {
-        searchResult.map( result => {
+        searchResult.map(result => {
           return <p key={result}>{result}</p>;
-        } )
+        })
       }
     </>
   );
