@@ -4,7 +4,7 @@ import ProgressBar from "./ProgressBar";
 export const ProgressBarForm = () => {
   const [value, setValue] = useState(0);
   const onInputChange = useCallback((e) => {
-    if (e.target.value < 101 && e.target.value >= 0) {
+    if (e.target.value <= 100 && e.target.value >= 0) {
       setValue(e.target.value);
     }
   }, []);

@@ -6,7 +6,7 @@ export enum ESearchIputModes {
   withDelay = "withDelay"
 }
 
-export interface ISearchInput {
+interface ISearchInput {
   placeholder: string,
   mode: ESearchIputModes,
   onSearch: (value: string) => void
