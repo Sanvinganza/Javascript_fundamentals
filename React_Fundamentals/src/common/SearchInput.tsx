@@ -19,7 +19,7 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
     if(e.key.toString() === 'Enter' && ESearchIputModes.onPress === mode) {
       onSearch(searchValue);
     }
-    
+
   },[searchValue, mode]);
 
   const onChange = useCallback((e) => {
@@ -37,7 +37,7 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
   }, [mode]);
 
   return (
-    <form>
+    <form onSubmit={(e)=>e.preventDefault()}>
       <fieldset>
         <legend>Search Input</legend>
         <input

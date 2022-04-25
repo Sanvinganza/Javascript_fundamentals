@@ -37,8 +37,10 @@ export default function App() {
         }} />
 
         <label htmlFor="onPress">onPress</label>
-        <input id="onPress" type='radio' name="mode" onClick={() =>
-          setMode(SearchIputModes.onPress)
+        <input id="onPress" type='radio' name="mode" onClick={() => {
+          setMode(SearchIputModes.onPress);
+          return false;
+        }
         } />
       </form>
       {memoArrayResult}
