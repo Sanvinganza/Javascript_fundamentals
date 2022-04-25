@@ -26,18 +26,18 @@ export default function App() {
       />
       <form>
         <label htmlFor="immediate">immediate</label>
-        <input id="immediate" type='checkbox' onClick={() => {
+        <input id="immediate" type='radio' name="mode" onClick={() => {
           setMode(SearchIputModes.immediate);
         }
         } />
 
         <label htmlFor="withDelay">withDelay</label>
-        <input id="withDelay" type='checkbox' onClick={() => {
+        <input id="withDelay" type='radio' name="mode" onClick={() => {
           setMode(SearchIputModes.withDelay);
         }} />
 
         <label htmlFor="onPress">onPress</label>
-        <input id="onPress" type='checkbox' onClick={() =>
+        <input id="onPress" type='radio' name="mode" onClick={() =>
           setMode(SearchIputModes.onPress)
         } />
       </form>
