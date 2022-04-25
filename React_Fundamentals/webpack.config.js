@@ -35,8 +35,7 @@ const config = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader',
-          'eslint-loader'
+          'sass-loader'
         ]
       },
       {

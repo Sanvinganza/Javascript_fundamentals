@@ -3,7 +3,6 @@
     "plugins": [ "@typescript-eslint", "react" ],
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
@@ -27,7 +26,8 @@
         "no-alert"         : 0,
         "no-useless-escape": 0,
         "eqeqeq"           : 1,
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-var-requires": 0
     },
     "env": {
         "browser": true,

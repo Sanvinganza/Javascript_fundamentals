@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react';
+import { ProgressBarForm } from './common/ProgressBarForm';
 import { SearchInput } from './common/SearchInput';
 import { ESearchIputModes as SearchIputModes } from './common/SearchInput';
+import "./styles.scss";
 
 export default function App() {
   const array = ['word', 'noun', 'hello', 'world'];
@@ -10,8 +12,10 @@ export default function App() {
   const onSearchHandler = useCallback((value) => {
     setSearchResult(() => array.filter(el => el.includes(value)));
   }, [searchResult, array]);
+  
   return (
     <>
+      <ProgressBarForm />
       <SearchInput
         placeholder="Search"
         mode={mode}
