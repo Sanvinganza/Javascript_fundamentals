@@ -20,10 +20,9 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
       onSearch(searchValue);
     }
     
-  },[searchValue]);
+  },[searchValue, mode]);
 
   const onChange = useCallback((e) => {
-    e.preventDefault();
     switch (mode) {
     case ESearchIputModes.immediate:
       onSearch(e.target.value);
@@ -35,7 +34,7 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
       setSearchValue(e.target.value);
       break;
     }
-  }, [searchValue, mode]);
+  }, [mode]);
 
   return (
     <form>
