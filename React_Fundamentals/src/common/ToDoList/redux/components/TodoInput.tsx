@@ -18,31 +18,18 @@ const TodoInput = () => {
   }, [text]);
 
   return (
-    <div className="card card-body my-3">
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <div className="input-group-prepend">
-            <div className="input-group-text bg-primary text-white">
-              <i className="fas fa-book" />
-            </div>
-          </div>
-          <input
-            type="text"
-            className="form-control text-capitalize"
-            placeholder="add a todo item"
-            name="todo"
-            value={text}
-            onChange={event => setText(event.target.value)}
-          />
-        </div>
-        <button
-          className="btn btn-block btn-primary mt-3"
-          onClick={handleSubmit}
-        >
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="add a todo item"
+        name="todo"
+        value={text}
+        onChange={event => setText(event.target.value)}
+      />
+      <button onClick={handleSubmit}>
           add item
-        </button>
-      </form>
-    </div>
+      </button>
+    </form>
   );
 };
 

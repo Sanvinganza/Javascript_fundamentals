@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearTodoList } from "../actions";
 import { TypeState as PropsList } from "../reducers/todos";
 
-type todo = {id: number, text: string, completed: boolean}
+type todo = { id: number, text: string, completed: boolean }
 type stateType = {
     todos: PropsList
 }
@@ -16,20 +16,19 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <ul className="list-group my-5 border border-light">
-        <h3 className="text-capitalize text-center">Todo list</h3>
-        {list.map((todo: todo) => (
-          <TodoItem key={todo.id} {...todo} />
-        ))}
-      </ul>
-      <button
-        type="button"
-        className="btn btn-danger btn-block text-capitalize mt-5"
-        onClick={handleClearList}
-      >
+    <div className="todo-list">
+      {list.map((todo: todo) => (
+        <TodoItem key={todo.id} {...todo} />
+      ))}
+      <div className="bottom">
+        <div className="items-left">{}items left</div>
+        <button
+          type="button"
+          onClick={handleClearList}
+        >
         clear list
-      </button>
+        </button>
+      </div>
     </div>
   );
 };

@@ -30,3 +30,71 @@ input:invalid {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: medium;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.todo {
+  display: flex;
+  min-width: 380px;
+  flex-direction: column;
+  position: absolute;
+  left: calc(50% - 110px);
+  font-family: 'Oleo Script', cursive;
+  top: 120px;
+  color: rgb(44, 44, 44);
+  font-size: 2em;
+  &-list{
+    list-style-type: none;
+  }
+  &-item {
+
+    border-bottom: 1px solid grey;
+  }
+}
+
+.todo > form {
+  display: flex;
+  & > input {
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: rgb(240, 240, 240);
+    font-family: 'Oleo Script', cursive;
+    outline: none;
+  }
+  & > button {
+    min-width: 20%;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  width: 100%;
+  color: white;
+  & > .items-left {
+    font-size: small;
+  }
+  & > button {
+    color: white;
+    border: 0;
+    background: none;
+  }
+}
+
+.app {
+  position: relative;
+  background: url(./assets/app-bg.jpg) no-repeat;
+  min-height: 720px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

@@ -10,7 +10,7 @@ interface action {
     type: string
 }
 
-const counter = (state: PropsInitialState = initalState, action: action) => {
+export const counter = (state: PropsInitialState = initalState, action: action) => {
   switch (action.type) {
   case ADD_COUNTER:
     return {

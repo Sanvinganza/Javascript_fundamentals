@@ -6,10 +6,10 @@ export default function App() {
   // const array = ['word', 'noun', 'hello', 'world'];
 
   return (
-    <>
+    <div className="app">
       {/* <ProgressBarForm /> */}
       {/* <SearchInputForm array={array} /> */}
       <ToDoList />
-    </>
+    </div>
   );
 }

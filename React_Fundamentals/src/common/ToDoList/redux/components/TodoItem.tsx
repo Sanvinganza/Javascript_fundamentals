@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { deleteTodo, toggleTodo } from "../actions";
+// import { useDispatch } from "react-redux";
+// import { deleteTodo, toggleTodo } from "../actions";
 
 interface PropsTodoItem {
     id: number,
@@ -9,8 +9,8 @@ interface PropsTodoItem {
 
 
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
-  const dispatch = useDispatch();
-
+//   const dispatch = useDispatch();
+  console.log(id);
   //   const changeBackground = (
   //     e: { target: HTMLInputElement; }, 
   //     text: string) => {
@@ -23,42 +23,21 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
     backgroundColor: completed ? "#A9A9A9" : "#ffffff"
   };
 
-  const handleDelete = () => {
-    dispatch(deleteTodo(id));
-  };
+  //   const handleDelete = () => {
+  //     dispatch(deleteTodo(id));
+  //   };
 
-  const hanldeToggle = () => {
-    dispatch(toggleTodo(id));
-  };
+  //   const hanldeToggle = () => {
+  //     dispatch(toggleTodo(id));
+  //   };
 
   return (
-    <li
-      style={styled}
-      className="list-group-item text-capitalize d-flex justify-content-between my-2"
-    >
-      <h6>
+    <div style={styled}>
+      <h6 className="todo-item">
         {text}
-
+        <a className="close"></a>
       </h6>
-      <div className="todo-icon">
-        <span className="mx-2 text-success">
-          <i
-            className="fas fa-check-circle"
-            // onMouseEnter={e => changeBackground(e, "groove")}
-            // onMouseLeave={e => changeBackground(e, "none")}
-            onClick={hanldeToggle}
-          />
-        </span>
-        <span className="mx-2 text-danger">
-          <i
-            className="fas fa-trash"
-            // onMouseEnter={e => changeBackground(e, "groove")}
-            // onMouseLeave={e => changeBackground(e, "none")}
-            onClick={handleDelete}
-          />
-        </span>
-      </div>
-    </li>
+    </div>
   );
 };
 

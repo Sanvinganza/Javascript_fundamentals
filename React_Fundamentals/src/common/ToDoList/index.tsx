@@ -9,9 +9,11 @@ export default function ToDoList () {
   const store = createStore(rootReducer);
 
   return (
-    <Provider store={store}>
-      <TodoInput />
-      <TodoList />
-    </Provider>
+    <div className="todo">
+      <Provider store={store}>
+        <TodoInput />
+        <TodoList />
+      </Provider>
+    </div>
   );
 }
