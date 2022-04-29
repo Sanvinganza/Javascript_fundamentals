@@ -1,41 +1,34 @@
-// import { useDispatch } from "react-redux";
-// import { deleteTodo, toggleTodo } from "../actions";
-
+import { useDispatch } from "react-redux";
+import { deleteTodo, toggleTodo } from "../actions";
+ 
 interface PropsTodoItem {
     id: number,
     text: string,
     completed: boolean
 }
 
-
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
-//   const dispatch = useDispatch();
-  console.log(id);
-  //   const changeBackground = (
-  //     e: { target: HTMLInputElement; }, 
-  //     text: string) => {
-  //     e.target.style.borderStyle = text;
-  //     e.target.style.backgroundColor = "grey";
-  //   };
+  const dispatch = useDispatch();
 
   const styled = {
     textDecoration: completed ? "line-through" : "none",
     backgroundColor: completed ? "#A9A9A9" : "#ffffff"
   };
 
-  //   const handleDelete = () => {
-  //     dispatch(deleteTodo(id));
-  //   };
-
-  //   const hanldeToggle = () => {
-  //     dispatch(toggleTodo(id));
-  //   };
-
+  const handleCompleted = () => {
+    dispatch(toggleTodo(id));
+  };
+  
+  const handleDeleted = () => {
+    dispatch(deleteTodo(id));
+  };
+  
   return (
-    <div style={styled}>
-      <h6 className="todo-item">
+    <div>
+      <h6 className="todo-item" style={styled}>
+        <input type="checkbox" onClick={handleCompleted}/>
         {text}
-        <a className="close"></a>
+        <button className="close" onClick={handleDeleted}></button>
       </h6>
     </div>
   );
