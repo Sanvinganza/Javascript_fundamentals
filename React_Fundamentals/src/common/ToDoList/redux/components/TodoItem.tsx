@@ -25,11 +25,11 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   
   return (
     <div>
-      <h6 className="todo-item" style={styled}>
-        <input type="checkbox" onClick={handleCompleted}/>
+      <div className="todo-item" style={styled}>
+        <input className="completed" type="checkbox" onClick={handleCompleted}/>
         {text}
         <button className="close" onClick={handleDeleted}></button>
-      </h6>
+      </div>
     </div>
   );
 };

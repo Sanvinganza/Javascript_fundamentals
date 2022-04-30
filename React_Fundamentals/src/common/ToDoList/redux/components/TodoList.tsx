@@ -12,7 +12,11 @@ type stateType = {
 const TodoList = () => {
   const { list } = useSelector((state: stateType) => state.todos);
   const dispatch = useDispatch();
-  
+  const completedItems = useSelector((state: stateType) => 
+    state.todos.list.filter((item: todo) => 
+      item.completed === true))
+    .length;
+
   const handleClearList = () => {
     dispatch(clearTodoList());
   };
@@ -30,7 +34,7 @@ const TodoList = () => {
     <div className="todo-list">
       {memoList}
       <div className="bottom">
-        <div className="items-left">{}items left</div>
+        <div className="items-left">{completedItems} items left</div>
         
         <button 
           className="getTodo"

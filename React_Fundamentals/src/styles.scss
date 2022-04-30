@@ -46,21 +46,31 @@ ul {
   color: rgb(44, 44, 44);
   font-size: 2em;
   &-list{
+    margin-top: 30px;
     list-style-type: none;
   }
   &-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     padding: 5px;
     border-bottom: 1px solid grey;
   }
 }
 
-.item > .close {
-  background-image: url("./assets/delete.svg");
-  height: 30px;
-  width: 30px;
+.todo-item {
+  & > input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+    border: 0;
+  }
+  & > .close { 
+    background-image: url("./assets/delete.svg");
+    height: 30px;
+    width: 30px;
+    border: 0;
+  }
 }
 
 .todo > form {
@@ -84,7 +94,6 @@ ul {
 .bottom {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
   padding: 10px;
   color: white;
   background: grey;

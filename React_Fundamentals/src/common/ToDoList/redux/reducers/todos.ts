@@ -18,6 +18,14 @@ export type State = {
     list : PropsList[]
 };
 
+const initalState: State = {
+  list: [{
+    id: 0,
+    text: 'Message...',
+    completed: false
+  }]
+};
+
 export interface action {
     type: string,
     text: string,
@@ -25,17 +33,13 @@ export interface action {
     payload: Array<string>
 }
 
-const initalState: State = {
-  list: []
-};
-  
 const todos = (state: TypeState = initalState, action: action) => {
   switch (action.type) {
   case ADD_TODO:
     return {
       list: [
         ...state.list,
-        { text: action.text, completed: false }
+        { id: state.list[state.list.length - 1].id + 1, text: action.text, completed: false }
       ]
     };
   case CLEAR_TODO_LIST:
