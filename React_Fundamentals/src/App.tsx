@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { hot } from "react-hot-loader/root";
-import { ProgressBarForm } from './common/ProgressBarForm';
+// import { ProgressBarForm } from './common/ProgressBar/ProgressBarForm';
+// import { SearchInputForm } from './common/SearchInput/SearchInputForm';
+import ToDoList from './common/ToDoList';
 
-class App extends React.Component {
+export default function App() {
+  // const array = ['word', 'noun', 'hello', 'world'];
 
-  render() {
-    return (
-      <ProgressBarForm />
-    );
-  }
+  return (
+    <div className="app">
+      {/* <ProgressBarForm /> */}
+      {/* <SearchInputForm array={array} /> */}
+      <ToDoList />
+    </div>
+  );
 }
-
-export default hot(App);

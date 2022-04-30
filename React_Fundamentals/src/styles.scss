@@ -11,9 +11,11 @@ h1 {
   max-width: 500px;
   border: 1px black solid;
 }
+
 .input-progress_bar {
   width: 100px;
 }
+
 .progress_bar > .progress_bar-inner {
   height: 15px;
   background-color: orange;
@@ -21,4 +23,97 @@ h1 {
 
 input:invalid {
   box-shadow: 0 0 5px 1px red;
+}
+
+.search-input {
+  @extend .progress_bar;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: medium;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.todo {
+  display: flex;
+  min-width: 380px;
+  flex-direction: column;
+  position: absolute;
+  left: calc(50% - 110px);
+  font-family: 'Oleo Script', cursive;
+  top: 120px;
+  color: rgb(44, 44, 44);
+  font-size: 2em;
+  &-list{
+    margin-top: 30px;
+    list-style-type: none;
+  }
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 5px;
+    border-bottom: 1px solid grey;
+  }
+}
+
+.todo-item {
+  & > input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+    border: 0;
+  }
+  & > .close { 
+    background-image: url("./assets/delete.svg");
+    height: 30px;
+    width: 30px;
+    border: 0;
+  }
+}
+
+.todo > form {
+  display: flex;
+  & > input {
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: rgb(240, 240, 240);
+    font-family: 'Oleo Script', cursive;
+    outline: none;
+  }
+  & > button {
+    min-width: 20%;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  color: white;
+  background: grey;
+  & > .items-left {
+    font-size: small;
+  }
+  & > button {
+    color: white;
+    border: 0;
+    background: none;
+  }
+}
+
+.app {
+  position: relative;
+  background: url(./assets/app-bg.jpg) no-repeat;
+  min-height: 720px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
