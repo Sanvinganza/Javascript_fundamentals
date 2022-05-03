@@ -97,6 +97,7 @@ ul {
   padding: 10px;
   color: white;
   background: grey;
+  margin-bottom: 15px;
   & > .items-left {
     font-size: small;
   }
@@ -114,6 +115,7 @@ ul {
 }
 
 body {
+  background-color: #fafafa;
   margin: 0;
   padding: 0;
 }

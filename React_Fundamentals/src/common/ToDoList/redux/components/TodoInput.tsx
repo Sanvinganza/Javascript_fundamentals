@@ -26,9 +26,6 @@ const TodoInput = () => {
         value={text}
         onChange={event => setText(event.target.value)}
       />
-      <button onClick={handleSubmit}>
-          add item
-      </button>
     </form>
   );
 };
