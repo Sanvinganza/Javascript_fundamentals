@@ -9,6 +9,7 @@ type todo = { id: number, text: string, completed: boolean }
 type stateType = {
     todos: PropsList
 }
+
 const TodoList = () => {
   const { list } = useSelector((state: stateType) => state.todos);
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const TodoList = () => {
   };
   return (
     <div className="todo-list">
-      {memoList}
+      {memoList.length? memoList: 'List is empty...'}
       <div className="bottom">
         <div className="items-left">{completedItems} items left</div>
         
