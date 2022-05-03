@@ -19,11 +19,7 @@ export type State = {
 };
 
 const initalState: State = {
-  list: [{
-    id: 0,
-    text: 'Message...',
-    completed: false
-  }]
+  list: []
 };
 
 export interface action {
@@ -36,6 +32,12 @@ export interface action {
 const todos = (state: TypeState = initalState, action: action) => {
   switch (action.type) {
   case ADD_TODO:
+    if(!state.list.length) 
+      return {
+        list: [
+          { id: 0, text: action.text, completed: false }
+        ]
+      };
     return {
       list: [
         ...state.list,
