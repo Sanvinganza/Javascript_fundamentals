@@ -13,7 +13,7 @@ type stateType = {
 const TodoList = () => {
   const { list } = useSelector((state: stateType) => state.todos);
   console.log(list);
-    
+
   useEffect(
     () => {
       setResultList(list);

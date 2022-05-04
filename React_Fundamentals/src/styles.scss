@@ -108,6 +108,12 @@ ul {
     border: 0;
     background: none;
   }
+  & > select {
+    background-color: grey;
+    border: 0;
+    color: white;
+    font-family: cursive;
+  }
 }
 
 .app {

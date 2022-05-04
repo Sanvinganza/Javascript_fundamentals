@@ -14,7 +14,7 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
     backgroundColor: completed ? "#A9A9A9" : "#ffffff"
   };
 
-  const handleCompleted = () => {
+  const onSelect = () => {
     dispatch(toggleTodo(id));
   };
   
@@ -25,7 +25,7 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   return (
     <div>
       <div className="todo-item" style={styled}>
-        <input className="completed" type="checkbox" onClick={handleCompleted} checked={completed}/>
+        <input className="completed" type="checkbox" onClick={onSelect} defaultChecked={completed}/>
         {text}
         <button className="close" onClick={handleDeleted}></button>
       </div>
