@@ -9,7 +9,6 @@ interface PropsTodoItem {
 
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   const dispatch = useDispatch();
-  console.log(id);
   const styled = {
     textDecoration: completed ? "line-through" : "none",
     backgroundColor: completed ? "#A9A9A9" : "#ffffff"
@@ -26,7 +25,7 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   return (
     <div>
       <div className="todo-item" style={styled}>
-        <input className="completed" type="checkbox" onClick={handleCompleted}/>
+        <input className="completed" type="checkbox" onClick={handleCompleted} checked={completed}/>
         {text}
         <button className="close" onClick={handleDeleted}></button>
       </div>

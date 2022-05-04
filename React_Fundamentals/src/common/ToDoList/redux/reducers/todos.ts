@@ -3,7 +3,7 @@ import {
   ADD_TODO_LIST,
   CLEAR_TODO_LIST,
   DELETE_TODO,
-  GET_TODO,
+  LOADING_DATA,
   TOGGLE_TODO,
 } from "../actions/actions.types";
 
@@ -16,18 +16,21 @@ export type PropsList = {
 };
 
 export type State = {
+    isLoading: boolean,
     list : PropsList[]
 };
 
 const initalState: State = {
+  isLoading: false,
   list: []
 };
 
 export interface action {
     type: string,
     text: string,
-    id: number
-    list: Array<string>
+    id: number,
+    list: Array<string>,
+    status: boolean
 }
 
 const todos = (state: TypeState = initalState, action: action) => {
@@ -67,6 +70,12 @@ const todos = (state: TypeState = initalState, action: action) => {
         return { id: state.list[state.list.length - 1].id + index + 1, text: item, completed: false };
       })]
     };
+  case LOADING_DATA:
+    return {
+      ...state,
+      isLoading: action.status
+    };
+
   default:
     return state;
   }

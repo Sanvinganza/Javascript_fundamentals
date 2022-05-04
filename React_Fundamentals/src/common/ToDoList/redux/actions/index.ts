@@ -3,6 +3,7 @@ import {
   ADD_TODO_LIST,
   CLEAR_TODO_LIST,
   DELETE_TODO,
+  LOADING_DATA,
   TOGGLE_TODO,
 } from "./actions.types";
   
@@ -40,3 +41,9 @@ export const toggleTodo = (id: number) => {
   };
 };
   
+export const loadingData = (status: boolean) => {
+  return {
+    type: LOADING_DATA,
+    status
+  };
+};
