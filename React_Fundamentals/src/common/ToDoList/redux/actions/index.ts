@@ -1,8 +1,8 @@
 import {
   ADD_TODO,
+  ADD_TODO_LIST,
   CLEAR_TODO_LIST,
   DELETE_TODO,
-  GET_TODO,
   TOGGLE_TODO,
 } from "./actions.types";
   
@@ -13,12 +13,13 @@ export const addTodo = (text: string) => {
   };
 };
 
-export const getTodo = (data: any) => {
+export const addTodoList = (list: Array<string>) => {
   return {
-    type: GET_TODO,
-    payload: data
+    type: ADD_TODO_LIST,
+    list
   };
 };
+
 export const clearTodoList = () => {
   return {
     type: CLEAR_TODO_LIST

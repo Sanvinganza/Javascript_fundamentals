@@ -1,9 +1,9 @@
 import TodoItem from "./TodoItem";
 import { useSelector, useDispatch } from "react-redux";
-import { clearTodoList, getTodo } from "../actions";
+import { clearTodoList } from "../actions";
 import { TypeState as PropsList } from "../reducers/todos";
 import { useMemo } from "react";
-import { getTodoAPI } from "../../api/getTodoAPI";
+import { fetchTodoList } from "../middlewares/fetchTodoList";
 
 type todo = { id: number, text: string, completed: boolean }
 type stateType = {
@@ -13,11 +13,11 @@ type stateType = {
 const TodoList = () => {
   const { list } = useSelector((state: stateType) => state.todos);
   const dispatch = useDispatch();
+  
   const completedItems = useSelector((state: stateType) => 
     state.todos.list.filter((item: todo) => 
-      item.completed === true))
-    .length;
-
+      item.completed === true));
+  
   const handleClearList = () => {
     dispatch(clearTodoList());
   };
@@ -25,23 +25,19 @@ const TodoList = () => {
     <TodoItem key={todo.id} {...todo} />
   )), [list]);
 
-  const handleGetTodo = () => {
-    getTodoAPI().then((resolve)=>{
-      dispatch(getTodo(resolve));
-    });
-    
-  };
+  const handleGetTodo = () => fetchTodoList(dispatch);
+  
   return (
     <div className="todo-list">
       {memoList.length? memoList: 'List is empty...'}
       <div className="bottom">
-        <div className="items-left">{completedItems} items left</div>
+        <div className="items-left">{completedItems.length} items left</div>
         
         <button 
           className="getTodo"
           onClick={handleGetTodo}
         >
-            loadTodo
+            newTodo
         </button>
 
         <button

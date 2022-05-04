@@ -9,7 +9,7 @@ interface PropsTodoItem {
 
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   const dispatch = useDispatch();
-
+  console.log(id);
   const styled = {
     textDecoration: completed ? "line-through" : "none",
     backgroundColor: completed ? "#A9A9A9" : "#ffffff"

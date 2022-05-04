@@ -1,12 +1,13 @@
-import * as React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import TodoInput from './redux/components/TodoInput';
 import TodoList from './redux/components/TodoList';
 import rootReducer from './redux/reducers';
+import thunkMiddleware from 'redux-thunk';
 
 export default function ToDoList () {
-  const store = createStore(rootReducer);
+  const store = createStore(rootReducer,
+    applyMiddleware(thunkMiddleware));
 
   return (
     <div className="todo">

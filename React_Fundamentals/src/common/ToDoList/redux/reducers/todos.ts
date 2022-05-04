@@ -1,5 +1,6 @@
 import {
   ADD_TODO,
+  ADD_TODO_LIST,
   CLEAR_TODO_LIST,
   DELETE_TODO,
   GET_TODO,
@@ -26,7 +27,7 @@ export interface action {
     type: string,
     text: string,
     id: number
-    payload: Array<string>
+    list: Array<string>
 }
 
 const todos = (state: TypeState = initalState, action: action) => {
@@ -58,12 +59,13 @@ const todos = (state: TypeState = initalState, action: action) => {
         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       )
     };
-  case GET_TODO:
+  case ADD_TODO_LIST:
     return {
       ...state,
-      //   list: [...state.list, action.payload.map((item, id) => {
-        
-    // })]
+      list: [...state.list, ...action.list.map( (item, index) => {
+        if(!state.list.length) return { id: index, text: item, completed: false };
+        return { id: state.list[state.list.length - 1].id + index + 1, text: item, completed: false };
+      })]
     };
   default:
     return state;
