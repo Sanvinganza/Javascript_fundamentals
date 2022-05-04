@@ -10,14 +10,18 @@ import {
 export const addTodo = (text: string) => {
   return {
     type: ADD_TODO,
-    text
+    payload: {
+      text
+    }
   };
 };
 
 export const addTodoList = (list: Array<string>) => {
   return {
     type: ADD_TODO_LIST,
-    list
+    payload: {
+      list
+    }
   };
 };
 
@@ -30,20 +34,26 @@ export const clearTodoList = () => {
 export const deleteTodo = (id: number) => {
   return {
     type: DELETE_TODO,
-    id
+    payload: {
+      id
+    }
   };
 };
 
 export const toggleTodo = (id: number) => {
   return {
     type: TOGGLE_TODO,
-    id
+    payload: {
+      id
+    }
   };
 };
   
 export const loadingData = (status: boolean) => {
   return {
     type: LOADING_DATA,
-    status
+    payload: {
+      status
+    }
   };
 };

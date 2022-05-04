@@ -41,6 +41,7 @@ const TodoList = () => {
     dispatch(fetchTodoList());
   };
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectedTodos = (e:any) => {
     switch(e.target.value) {
     case "All": setResultList(list); break;
@@ -60,7 +61,7 @@ const TodoList = () => {
         </button>
 
         <select name="select" onChange={handleSelectedTodos}>
-          <option value="All" selected>All</option>
+          <option value="All">All</option>
           <option value="Completed">Completed</option>
           <option value="Not_Completed">Not Completed</option>
         </select>
