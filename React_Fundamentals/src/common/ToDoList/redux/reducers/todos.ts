@@ -16,8 +16,8 @@ export type PropsList = {
 };
 
 export type State = {
-    isLoading: boolean,
-    list : PropsList[]
+  isLoading: boolean,
+  list : PropsList[]
 };
 
 const initalState: State = {
@@ -31,14 +31,14 @@ export interface action {
       text: string,
       id: number,
       list: Array<string>,
-    }
-    status: boolean,
+      status: boolean
+      
+    },
   }
 
 const todos = (state: TypeState = initalState, action: action) => {
   switch (action.type) {
   case ADD_TODO:
-    console.log(action.payload.text);
     if(!state.list.length) 
       return {
         list: [
@@ -76,7 +76,7 @@ const todos = (state: TypeState = initalState, action: action) => {
   case LOADING_DATA:
     return {
       ...state,
-      isLoading: action.status
+      isLoading: action.payload.status
     };
 
   default:
@@ -85,4 +85,3 @@ const todos = (state: TypeState = initalState, action: action) => {
 };
   
 export default todos;
-  

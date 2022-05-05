@@ -1,15 +1,14 @@
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../actions";
+import { fetchTodo } from "../middlewares/fetchTodo";
 
 const TodoInput = () => {
   const [text, setText] = useState("");
-
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(event => {
     if (text !== "") {
-      dispatch(addTodo(text));
+      dispatch(fetchTodo(text));
       setText("");
     } else {
       alert("cant not to empty text");

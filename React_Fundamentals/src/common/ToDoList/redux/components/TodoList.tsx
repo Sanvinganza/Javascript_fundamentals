@@ -4,38 +4,40 @@ import { clearTodoList } from "../actions";
 import { TypeState as PropsList } from "../reducers/todos";
 import { useEffect, useMemo, useState } from "react";
 import { fetchTodoList } from "../middlewares/fetchTodoList";
+import { Loading } from "./Loading";
 
 type todo = { id: number, text: string, completed: boolean }
+
 type stateType = {
-    todos: PropsList
+  todos: PropsList,
+  isLoading: boolean
 }
 
 const TodoList = () => {
   const { list } = useSelector((state: stateType) => state.todos);
-  console.log(list);
-
+  const isLoading = useSelector((state: stateType) => state.todos.isLoading);
+  const [resultList, setResultList] = useState(list);
+  const dispatch = useDispatch();
+  console.log(isLoading);
   useEffect(
     () => {
       setResultList(list);
     }, [list]
   );
 
-  const [resultList, setResultList] = useState(list);
-  const dispatch = useDispatch();
-  
+  const memoList = useMemo(() => resultList.map((todo: todo) => (
+    <TodoItem key={todo.id} {...todo} />
+  )), [resultList]);
+
   const completedItems = useMemo(() => list.filter((item: todo) => 
     item.completed === true), [list]);
 
   const incompletedItems = useMemo(() => list.filter((item: todo) => 
     item.completed !== true), [list]);
-    
+
   const handleClearList = () => {
     dispatch(clearTodoList());
   };
-
-  const memoList = useMemo(() => resultList.map((todo: todo) => (
-    <TodoItem key={todo.id} {...todo} />
-  )), [resultList]);
 
   const handleGetTodo = () => {
     dispatch(fetchTodoList());
@@ -52,7 +54,8 @@ const TodoList = () => {
 
   return (
     <div className="todo-list">
-      {memoList.length? memoList: 'List is empty...'}
+      {isLoading? <Loading />:
+        (memoList.length? memoList: 'List is empty...')}
       <div className="bottom">
         <div className="items-left">{completedItems.length} items left</div>
         
