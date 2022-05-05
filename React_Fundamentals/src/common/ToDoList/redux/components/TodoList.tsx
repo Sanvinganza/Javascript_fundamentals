@@ -1,20 +1,15 @@
 import TodoItem from "./TodoItem";
 import { useSelector, useDispatch } from "react-redux";
 import { clearTodoList } from "../actions";
-import { State as PropsList } from "../reducers/todos";
+import { State } from "../reducers/todos";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { fetchTodoList } from "../middlewares/fetchTodoList";
 import { Loading } from "./Loading";
 import { PropsList as PropsTodo} from "../reducers/todos";
 
-type rootState = {
-  rootReducerTodos: PropsList
-  isLoading: boolean
-}
-
 const TodoList = () => {
-  const list = useSelector((state: rootState) => state.rootReducerTodos.list);
-  const isLoading = useSelector((state: rootState) => state.rootReducerTodos.isLoading);
+  const list = useSelector((state: State) => state.list);
+  const isLoading = useSelector((state: State) => state.isLoading);
   const [resultList, setResultList] = useState(list);
   const dispatch = useDispatch();
 

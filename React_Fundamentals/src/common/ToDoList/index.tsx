@@ -1,16 +1,13 @@
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
+import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
 import TodoInput from './redux/components/TodoInput';
 import TodoList from './redux/components/TodoList';
 import rootReducer from './redux/reducers';
 import thunkMiddleware from 'redux-thunk';
-import { useDispatch } from 'react-redux';
+import { RootReducer } from './redux/reducers/todos';
 
-const store = createStore(rootReducer,
+const store: Store<RootReducer, AnyAction> = createStore(rootReducer, 
   applyMiddleware(thunkMiddleware));
-
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default function ToDoList () {
   return (

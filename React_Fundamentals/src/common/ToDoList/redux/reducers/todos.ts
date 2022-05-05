@@ -23,7 +23,7 @@ const initalState: State = {
   list: []
 };
 
-export interface action {
+export interface Action {
     type: string,
     payload: {
       text: string,
@@ -33,7 +33,7 @@ export interface action {
     },
   }
 
-const rootReducerTodos = (state: State = initalState, action: action) => {
+const rootReducerTodos = (state: State = initalState, action: Action) => {
   switch (action.type) {
   case ADD_TODO:
     if(!state.list.length) 
@@ -80,5 +80,6 @@ const rootReducerTodos = (state: State = initalState, action: action) => {
     return state;
   }
 };
-  
+
+export type RootReducer = ReturnType<typeof rootReducerTodos>;
 export default rootReducerTodos;
