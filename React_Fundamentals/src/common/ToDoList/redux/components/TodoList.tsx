@@ -29,10 +29,10 @@ const TodoList = () => {
   )), [resultList]);
 
   const completedItems = useMemo(() => list.filter((item: PropsTodo) => 
-    item.completed === true), [list]);
+    item.completed), [list]);
 
   const incompletedItems = useMemo(() => list.filter((item: PropsTodo) => 
-    item.completed !== true), [list]);
+    !item.completed), [list]);
 
   const handleClearList = () => {
     dispatch(clearTodoList());
@@ -42,7 +42,7 @@ const TodoList = () => {
     dispatch(fetchTodoList());
   };
   
-  const isSelecteOption = (e: FormEvent<HTMLSelectElement>) => {
+  const onSelecteOption = (e: FormEvent<HTMLSelectElement>) => {
     switch(e.currentTarget.value) {
     case "All": setResultList(list); break;
     case "Completed": setResultList(completedItems); break;
@@ -54,14 +54,14 @@ const TodoList = () => {
     <div className="todo-list">
       {isLoading? <Loading />:
         (memoList.length? memoList: 'List is empty...')}
-      <div className="bottom">
-        <div className="items-left">{completedItems.length} items left</div>
+      <div className="footer">
+        <div className="items-left">{memoList.length - completedItems.length} items left</div>
         
         <button  className="getTodo" onClick={loadingTodo}>
           newTodo
         </button>
 
-        <select name="select" onChange={isSelecteOption}>
+        <select name="select" onChange={onSelecteOption}>
           <option value="All">All</option>
           <option value="Completed">Completed</option>
           <option value="Not_Completed">Not Completed</option>
