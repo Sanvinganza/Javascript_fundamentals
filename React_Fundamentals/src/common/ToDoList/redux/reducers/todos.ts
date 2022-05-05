@@ -14,7 +14,7 @@ export type PropsList = {
 };
 
 export type State = {
-  isLoading: boolean,
+  isLoading?: boolean,
   list : PropsList[]
 };
 
@@ -75,11 +75,9 @@ const rootReducerTodos = (state: State = initalState, action: Action) => {
       ...state,
       isLoading: action.payload.status
     };
-
   default:
     return state;
   }
 };
 
-export type RootReducer = ReturnType<typeof rootReducerTodos>;
 export default rootReducerTodos;

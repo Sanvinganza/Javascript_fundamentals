@@ -1,13 +1,14 @@
 import { Provider } from 'react-redux';
-import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
 import TodoInput from './redux/components/TodoInput';
 import TodoList from './redux/components/TodoList';
 import rootReducer from './redux/reducers';
 import thunkMiddleware from 'redux-thunk';
-import { RootReducer } from './redux/reducers/todos';
+import { configureStore } from '@reduxjs/toolkit';
 
-const store: Store<RootReducer, AnyAction> = createStore(rootReducer, 
-  applyMiddleware(thunkMiddleware));
+const store = configureStore({
+  reducer: rootReducer, 
+  middleware: [thunkMiddleware]
+});
 
 export default function ToDoList () {
   return (

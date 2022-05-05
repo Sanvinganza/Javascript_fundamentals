@@ -1,7 +1,7 @@
+import { Dispatch } from "redux";
 import { addTodo, loadingData } from "../actions";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const fetchTodo = (text: string) => (dispatch: any) => {
+export const fetchTodo = (text: string) => (dispatch: Dispatch) => {
   dispatch(loadingData(true));
   new Promise(() => {    
     setTimeout(() => dispatch(addTodo(text)), 400);
