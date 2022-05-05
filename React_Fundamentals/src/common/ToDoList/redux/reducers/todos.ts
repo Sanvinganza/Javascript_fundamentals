@@ -10,9 +10,9 @@ import {
 export type TypeState = typeof initalState;
 
 export type PropsList = {
-    id: number,
-    text: string,
-    completed: boolean
+  id: number,
+  text: string,
+  completed: boolean
 };
 
 export type State = {
@@ -32,11 +32,10 @@ export interface action {
       id: number,
       list: Array<string>,
       status: boolean
-      
     },
   }
 
-const todos = (state: TypeState = initalState, action: action) => {
+const rootReducerTodos = (state: TypeState = initalState, action: action) => {
   switch (action.type) {
   case ADD_TODO:
     if(!state.list.length) 
@@ -84,4 +83,4 @@ const todos = (state: TypeState = initalState, action: action) => {
   }
 };
   
-export default todos;
+export default rootReducerTodos;

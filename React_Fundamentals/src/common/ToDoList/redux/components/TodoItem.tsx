@@ -1,24 +1,21 @@
 import { useDispatch } from "react-redux";
-import { deleteTodo, toggleTodo } from "../actions";
- 
-interface PropsTodoItem {
-    id: number,
-    text: string,
-    completed: boolean
-}
+import { deleteTodo } from "../actions";
+import { fetchToggleTodo } from "../middlewares/fetchToggleTodo";
+import { PropsList as PropsTodoItem } from "../reducers/todos";
 
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   const dispatch = useDispatch();
+
   const styled = {
     textDecoration: completed ? "line-through" : "none",
     backgroundColor: completed ? "#A9A9A9" : "#ffffff"
   };
 
   const onSelect = () => {
-    dispatch(toggleTodo(id));
+    dispatch(fetchToggleTodo(id));
   };
   
-  const handleDeleted = () => {
+  const onDelete = () => {
     dispatch(deleteTodo(id));
   };
   
@@ -27,7 +24,7 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
       <div className="todo-item" style={styled}>
         <input className="completed" type="checkbox" onClick={onSelect} defaultChecked={completed}/>
         {text}
-        <button className="close" onClick={handleDeleted}></button>
+        <button className="close" onClick={onDelete}></button>
       </div>
     </div>
   );

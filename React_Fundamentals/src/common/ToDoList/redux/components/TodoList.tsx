@@ -2,50 +2,48 @@ import TodoItem from "./TodoItem";
 import { useSelector, useDispatch } from "react-redux";
 import { clearTodoList } from "../actions";
 import { TypeState as PropsList } from "../reducers/todos";
-import { useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { fetchTodoList } from "../middlewares/fetchTodoList";
 import { Loading } from "./Loading";
+import { PropsList as PropsTodo} from "../reducers/todos";
 
-type todo = { id: number, text: string, completed: boolean }
-
-type stateType = {
-  todos: PropsList,
+type rootState = {
+  rootReducerTodos: PropsList
   isLoading: boolean
 }
 
 const TodoList = () => {
-  const { list } = useSelector((state: stateType) => state.todos);
-  const isLoading = useSelector((state: stateType) => state.todos.isLoading);
+  const list = useSelector((state: rootState) => state.rootReducerTodos.list);
+  const isLoading = useSelector((state: rootState) => state.rootReducerTodos.isLoading);
   const [resultList, setResultList] = useState(list);
   const dispatch = useDispatch();
-  console.log(isLoading);
+
   useEffect(
     () => {
       setResultList(list);
     }, [list]
   );
 
-  const memoList = useMemo(() => resultList.map((todo: todo) => (
+  const memoList = useMemo(() => resultList.map((todo: PropsTodo) => (
     <TodoItem key={todo.id} {...todo} />
   )), [resultList]);
 
-  const completedItems = useMemo(() => list.filter((item: todo) => 
+  const completedItems = useMemo(() => list.filter((item: PropsTodo) => 
     item.completed === true), [list]);
 
-  const incompletedItems = useMemo(() => list.filter((item: todo) => 
+  const incompletedItems = useMemo(() => list.filter((item: PropsTodo) => 
     item.completed !== true), [list]);
 
   const handleClearList = () => {
     dispatch(clearTodoList());
   };
 
-  const handleGetTodo = () => {
+  const loadingTodo = () => {
     dispatch(fetchTodoList());
   };
   
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSelectedTodos = (e:any) => {
-    switch(e.target.value) {
+  const isSelecteOption = (e: FormEvent<HTMLSelectElement>) => {
+    switch(e.currentTarget.value) {
     case "All": setResultList(list); break;
     case "Completed": setResultList(completedItems); break;
     case "Not_Completed": setResultList(incompletedItems); break;
@@ -59,11 +57,11 @@ const TodoList = () => {
       <div className="bottom">
         <div className="items-left">{completedItems.length} items left</div>
         
-        <button  className="getTodo" onClick={handleGetTodo}>
+        <button  className="getTodo" onClick={loadingTodo}>
           newTodo
         </button>
 
-        <select name="select" onChange={handleSelectedTodos}>
+        <select name="select" onChange={isSelecteOption}>
           <option value="All">All</option>
           <option value="Completed">Completed</option>
           <option value="Not_Completed">Not Completed</option>
