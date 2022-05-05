@@ -1,7 +1,7 @@
 import TodoItem from "./TodoItem";
 import { useSelector, useDispatch } from "react-redux";
 import { clearTodoList } from "../actions";
-import { TypeState as PropsList } from "../reducers/todos";
+import { State as PropsList } from "../reducers/todos";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { fetchTodoList } from "../middlewares/fetchTodoList";
 import { Loading } from "./Loading";

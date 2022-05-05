@@ -7,8 +7,6 @@ import {
   TOGGLE_TODO,
 } from "../actions/actions.types";
 
-export type TypeState = typeof initalState;
-
 export type PropsList = {
   id: number,
   text: string,
@@ -35,7 +33,7 @@ export interface action {
     },
   }
 
-const rootReducerTodos = (state: TypeState = initalState, action: action) => {
+const rootReducerTodos = (state: State = initalState, action: action) => {
   switch (action.type) {
   case ADD_TODO:
     if(!state.list.length) 
