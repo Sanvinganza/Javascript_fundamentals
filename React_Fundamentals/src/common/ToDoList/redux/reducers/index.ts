@@ -1,8 +1,3 @@
-import { combineReducers } from "redux";
-import todos from "./todos";
-
-const rootReducer = combineReducers({
-  todos
-});
+import { default as rootReducer } from "./todos";
 
 export default rootReducer;

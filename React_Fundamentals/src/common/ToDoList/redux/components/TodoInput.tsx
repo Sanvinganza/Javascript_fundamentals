@@ -1,15 +1,14 @@
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../actions";
+import { AddTodoAction } from "../middlewares/fetchTodo";
 
 const TodoInput = () => {
   const [text, setText] = useState("");
-
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(event => {
     if (text !== "") {
-      dispatch(addTodo(text));
+      dispatch(AddTodoAction(text));
       setText("");
     } else {
       alert("cant not to empty text");
@@ -26,9 +25,6 @@ const TodoInput = () => {
         value={text}
         onChange={event => setText(event.target.value)}
       />
-      <button onClick={handleSubmit}>
-          add item
-      </button>
     </form>
   );
 };

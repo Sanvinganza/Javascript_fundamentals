@@ -27,7 +27,8 @@
         "no-useless-escape": 0,
         "eqeqeq"           : 1,
         "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-var-requires": 0
+        "@typescript-eslint/no-var-requires": 0,
+        "no-any"      : 0
     },
     "env": {
         "browser": true,
