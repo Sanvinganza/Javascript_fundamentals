@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../actions";
-import { fetchToggleTodo } from "../middlewares/fetchToggleTodo";
+import { ToggleTodoStatus } from "../middlewares/fetchToggleTodo";
 import { PropsList as PropsTodoItem } from "../reducers/todos";
 
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
@@ -12,7 +12,7 @@ const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
   };
 
   const onSelect = () => {
-    dispatch(fetchToggleTodo(id));
+    dispatch(ToggleTodoStatus(id));
   };
   
   const onDelete = () => {
