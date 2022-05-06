@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../actions";
-import { ToggleTodoStatus } from "../middlewares/fetchToggleTodo";
+import { ToggleTodoStatus } from "../middlewares/ToggleTodoStatus";
 import { PropsList as PropsTodoItem } from "../reducers/todos";
 
 const TodoItem = ({ id, text, completed }: PropsTodoItem) => {
