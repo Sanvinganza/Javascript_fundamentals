@@ -50,7 +50,7 @@ const TodoList = () => {
       {isLoading? <Loading />:
         (memoList.length? memoList: 'List is empty...')}
       <div className="footer">
-        <div className="items-left">{memoList.length - completedItems.length} items left</div>
+        <div className="items-left">{incompletedItems} items left</div>
         
         <button  className="getTodo" onClick={loadingTodo}>
           newTodo
