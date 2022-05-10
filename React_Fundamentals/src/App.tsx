@@ -2,6 +2,7 @@
 // import { SearchInputForm } from './common/SearchInput/SearchInputForm';
 import { NavigationMenu } from './common/NavigationMenu';
 // import ToDoList from './common/ToDoList';
+import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
   // const array = ['word', 'noun', 'hello', 'world'];
@@ -27,7 +28,9 @@ export default function App() {
       {/* <ProgressBarForm /> */}
       {/* <SearchInputForm array={array} /> */}
       {/* <ToDoList /> */}
-      <NavigationMenu items={menuItems}/>
+      <BrowserRouter>
+        <NavigationMenu items={menuItems}/>
+      </BrowserRouter>
     </div>
   );
 }
