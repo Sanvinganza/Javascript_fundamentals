@@ -1,53 +1,80 @@
-import { Link } from "react-router-dom";
+import { Routes, BrowserRouter as Router, Route, Link, Outlet } from "react-router-dom";
+import { NavMenuLink } from "./NavMenuLink";
 
-type IMenuProps = MenuItem[];
+type IMenuProps = {
+    items: MenuItem[];
+};
 
 type MenuItem = {
     name: string,
-    link?: string,
-    items?: IMenuProps[]
+    path: string,
+    items: IMenuProps[]
 }
 
-const Items = ({items}: any) => {
-  console.log('ITEMS=',items);
-  return (
+const Page = ({item}: any) => {
+  console.log(item);
+
+  return(
     <>
-      {items?items.map( (item: MenuItem) => 
-        <Item 
-          key={item.name} 
-          name={item.name} 
-          link={item.link}
-          items={item.items} 
-        />)
-        :
-        null
-      }
+      <NavMenuLink to={item.path}>
+        Path : {item.name}
+      </NavMenuLink>
     </>
   );
 };
 
-const Item = ({link, name, items}: MenuItem) => <>
-  {link?
-    <>
-      <Link to={link}>{name}</Link>
-      {console.log('ITEM FIRST= ',items)}
-      <Items props={items}/>
-    </> 
-    : 
-    <>
-      <h1>{name}</h1>
-      {console.log('ITEM SECOND= ',items)}
-      <Items props={items}/>
-    </>
-  }
-</>;
+const Layout = ({items}: IMenuProps) => {
+  const List = items.map((item, index) => {
+    return <>
 
-export function NavigationMenu ({items}: any) {
-  console.log('MENU=',items);
+      <Page item={item} />
+    </>;
+  });
+  
   return (
     <>
-      <h2>NavigationMenu</h2>
-      <Items items={items}/>
+      <h1>Navigation Menu</h1>
+      <nav>
+        {List}
+      </nav>
+  
+      <main style={{ padding: '1rem 0' }}>
+        <Outlet />
+      </main>
+    </>
+  );
+};
+
+export function NavigationMenu ({items}: IMenuProps) {
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Layout items={items} />}>
+            {/* About Home News */}
+            {items.map( (route: any)  => {
+              if(route.items.length !== 0 && route.items) {
+
+                // {Breaking news}
+                items.map( (route: any)  => {
+                  if(route.items.length !== 0 && route.items) {
+
+                    //first post second post
+                    return items.map( (route: any)  => 
+                      <Route key={route.path} element={<Page item={route} />}/>);
+                  }
+
+                  return <Route key={route.path} element={<Page item={route} />}/>;
+                });
+
+              }
+
+              return <Route key={route.path} element={<Page item={route} />}/>;
+            })
+            }
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 }

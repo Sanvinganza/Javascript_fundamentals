@@ -2,35 +2,49 @@
 // import { SearchInputForm } from './common/SearchInput/SearchInputForm';
 import { NavigationMenu } from './common/NavigationMenu';
 // import ToDoList from './common/ToDoList';
-import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
   // const array = ['word', 'noun', 'hello', 'world'];
   const menuItems = [
     {
       name: "Home",
-      link: "/home",
+      path: "home",
       items: []
     },
     {
       name: "News",
+      path: "news",
       items: [
         {
           name: "Brealing news",
-          link: "/news/breaking",
-          items: []
+          path: "breaking",
+          items: [
+            {
+              name: "first news",
+            },
+            {
+              name: "second news",
+            },
+            {
+              name: "third news",
+            }
+          ]
         }
       ]
+    },
+    {
+      name: "About",
+      path: "about",
+      items: []
     }
   ];
+
   return (
     <div className="app">
       {/* <ProgressBarForm /> */}
       {/* <SearchInputForm array={array} /> */}
       {/* <ToDoList /> */}
-      <BrowserRouter>
-        <NavigationMenu items={menuItems}/>
-      </BrowserRouter>
+      <NavigationMenu items={menuItems}/>
     </div>
   );
 }

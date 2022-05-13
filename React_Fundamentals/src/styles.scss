@@ -132,3 +132,11 @@ body {
   margin: 0;
   padding: 0;
 }
+
+a {
+  padding: 5px;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: $black-color;
+  font-weight: 800;
+}
