@@ -1,10 +1,11 @@
+import * as React from "react";
 import { useMatch } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 
-interface INavMenuLink {
-    children?: any,
+type INavMenuLink = {
+    children?: React.ReactNode,
     to: string,
-    props?: any
+    props?: LinkProps
 }
 
 export const NavMenuLink = ({children, to, ...props}: INavMenuLink) => {
@@ -14,7 +15,8 @@ export const NavMenuLink = ({children, to, ...props}: INavMenuLink) => {
     <Link 
       to={to}
       style={{
-        color: match? '$orange-color': 'white',
+        color: match? '$orange-color': 'blue',
+        textShadow: "10px 5px 5px grey",
       }}
       {...props}
     >

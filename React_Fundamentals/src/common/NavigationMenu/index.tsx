@@ -1,35 +1,29 @@
-import { Routes, BrowserRouter as Router, Route, Link, Outlet } from "react-router-dom";
+import { Routes, BrowserRouter as Router, Route, Outlet } from "react-router-dom";
 import { NavMenuLink } from "./NavMenuLink";
 
-type IMenuProps = {
-    items: MenuItem[];
+export type NavigationMenuProps = {
+    items: MenuItem[]
 };
 
-type MenuItem = {
+type LayoutProps = MenuItem[];
+
+export type MenuItem = {
     name: string,
     path: string,
-    items: IMenuProps[]
+    items: LayoutProps[]
 }
 
-const Page = ({item}: any) => {
-  console.log(item);
+const Layout = (items: NavigationMenuProps) => {
+  const linkList = items.items;
 
-  return(
-    <>
-      <NavMenuLink to={item.path}>
-        Path : {item.name}
+  const List = linkList.map((item, index) => 
+    item.path?
+      <NavMenuLink to={item.path} key={index}>
+        {item.name}
       </NavMenuLink>
-    </>
+      :
+      null
   );
-};
-
-const Layout = ({items}: IMenuProps) => {
-  const List = items.map((item, index) => {
-    return <>
-
-      <Page item={item} />
-    </>;
-  });
   
   return (
     <>
@@ -37,42 +31,59 @@ const Layout = ({items}: IMenuProps) => {
       <nav>
         {List}
       </nav>
-  
-      <main style={{ padding: '1rem 0' }}>
-        <Outlet />
-      </main>
     </>
   );
 };
 
-export function NavigationMenu ({items}: IMenuProps) {
+const Page = (item: any) => {
+  const page = item.items;
+  console.log(page);
+  return(
+    <>
+      <NavMenuLink to={page.path}>
+        {page.name}
+      </NavMenuLink>
+      {/* {item.items !== undefined && item.items.lenght !== 0?
+        page.items.map( (item: any) => Page(item.items))
+        :
+        null} */}
+      {page.items.map( item => <h4 key={item.id}>{item.name}</h4>)}
+      <NavMenuLink to='/'>
+        BACK
+      </NavMenuLink>
+    </>
+  );
+};
+
+const generateRoute = (items: any) => {
+  console.log(items);
+  return items.map( (route: MenuItem) => {
+    if(route.items !== undefined && route.items.length !== 0) {
+      return generateRoute(route.items);
+    }
+
+    return items.map( (route: MenuItem) => 
+      <Route 
+        path={route.path} 
+        key={route.path} 
+        element={<Page items={route} />}
+      />
+    );
+  });
+};
+
+const NoMatch = () => <h3>No Match (((<NavMenuLink to="/">BACK</NavMenuLink></h3>;
+
+export function NavigationMenu (props: NavigationMenuProps) {
+  const routesList = generateRoute(props.items);
+  console.log();
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<Layout items={items} />}>
-            {/* About Home News */}
-            {items.map( (route: any)  => {
-              if(route.items.length !== 0 && route.items) {
-
-                // {Breaking news}
-                items.map( (route: any)  => {
-                  if(route.items.length !== 0 && route.items) {
-
-                    //first post second post
-                    return items.map( (route: any)  => 
-                      <Route key={route.path} element={<Page item={route} />}/>);
-                  }
-
-                  return <Route key={route.path} element={<Page item={route} />}/>;
-                });
-
-              }
-
-              return <Route key={route.path} element={<Page item={route} />}/>;
-            })
-            }
-          </Route>
+          <Route path='/' element={<Layout items={props.items} />} />
+          <Route path="*" element={<NoMatch />} />
+          {routesList}
         </Routes>
       </Router>
     </>

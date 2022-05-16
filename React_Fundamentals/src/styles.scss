@@ -140,3 +140,9 @@ a {
   color: $black-color;
   font-weight: 800;
 }
+
+.page {
+  display: flex;
+  margin: 10px;
+  background-color: $grey-color;
+}

@@ -5,7 +5,7 @@ import { NavigationMenu } from './common/NavigationMenu';
 
 export default function App() {
   // const array = ['word', 'noun', 'hello', 'world'];
-  const menuItems = [
+  const menuItems: any = [
     {
       name: "Home",
       path: "home",
@@ -16,19 +16,16 @@ export default function App() {
       path: "news",
       items: [
         {
-          name: "Brealing news",
-          path: "breaking",
-          items: [
-            {
-              name: "first news",
-            },
-            {
-              name: "second news",
-            },
-            {
-              name: "third news",
-            }
-          ]
+          name: "first news",
+          id: 1
+        },
+        {
+          name: "second news",
+          id: 2
+        },
+        {
+          name: "third news",
+          id: 3
         }
       ]
     },
