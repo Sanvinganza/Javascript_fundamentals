@@ -146,3 +146,13 @@ a {
   margin: 10px;
   background-color: $grey-color;
 }
+
+.navigation-menu {
+  display: flex;
+  justify-content: center;
+  & * {
+    color:rgb(44, 44, 44);
+    padding: 5px;
+    background-color: transparent;
+  }
+}

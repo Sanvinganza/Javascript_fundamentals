@@ -1,25 +1,13 @@
+import * as React from "react";
 import { Routes, BrowserRouter as Router, Route, Outlet } from "react-router-dom";
+import { IMenuItem } from "../../App";
 import { NavMenuLink } from "./NavMenuLink";
 
-export type NavigationMenuProps = {
-    items: MenuItem[]
-};
-
-type LayoutProps = MenuItem[];
-
-export type MenuItem = {
-    name: string,
-    path: string,
-    items: LayoutProps[]
-}
-
-const Layout = (items: NavigationMenuProps) => {
-  const linkList = items.items;
-
-  const List = linkList.map((item, index) => 
+const Layout: React.FC<IProps> = ({items}) => {
+  const List = items.map((item, index) => 
     item.path?
       <NavMenuLink to={item.path} key={index}>
-        {item.name}
+        {item.element}
       </NavMenuLink>
       :
       null
@@ -28,64 +16,66 @@ const Layout = (items: NavigationMenuProps) => {
   return (
     <>
       <h1>Navigation Menu</h1>
-      <nav>
+      <nav className="navigation-menu">
         {List}
       </nav>
+      < Outlet />
     </>
   );
 };
+const Back = () => <NavMenuLink to="/">Back</NavMenuLink>;
 
-const Page = (item: any) => {
-  const page = item.items;
-  console.log(page);
-  return(
-    <>
-      <NavMenuLink to={page.path}>
-        {page.name}
-      </NavMenuLink>
-      {/* {item.items !== undefined && item.items.lenght !== 0?
-        page.items.map( (item: any) => Page(item.items))
-        :
-        null} */}
-      {page.items.map( item => <h4 key={item.id}>{item.name}</h4>)}
-      <NavMenuLink to='/'>
-        BACK
-      </NavMenuLink>
-    </>
-  );
+interface IPage {
+  route: IMenuItem
+}
+
+const Page = ({route}: IPage) => {
+  console.log(route.path);
+  return <>
+    <NavMenuLink to={route.path}>Link</NavMenuLink>
+    <Outlet />
+    <Back />
+  </>;
 };
 
-const generateRoute = (items: any) => {
-  console.log(items);
-  return items.map( (route: MenuItem) => {
+const generateRoute = (items: IMenuItem[]) => {
+  return items.map( (route: IMenuItem) => {
+    console.log(route.path);
     if(route.items !== undefined && route.items.length !== 0) {
-      return generateRoute(route.items);
+      return <Route 
+        path={route.path}
+        key={route.path}
+        element={<Page route={route} />}
+      >
+        {generateRoute(route.items)}
+      </Route>;
     }
 
-    return items.map( (route: MenuItem) => 
-      <Route 
-        path={route.path} 
-        key={route.path} 
-        element={<Page items={route} />}
-      />
-    );
+    return <Route 
+      path={route.path} 
+      key={route.path} 
+      element={route.element}
+    />;
   });
 };
 
-const NoMatch = () => <h3>No Match (((<NavMenuLink to="/">BACK</NavMenuLink></h3>;
+const NoMatch = () => <h3>No Match<NavMenuLink to="/">Back</NavMenuLink></h3>;
 
-export function NavigationMenu (props: NavigationMenuProps) {
-  const routesList = generateRoute(props.items);
-  console.log();
+interface IProps {
+  items: IMenuItem[]
+}
+
+export const NavigationMenu: React.FC<IProps> = ({items}) => {
+  const routeList = generateRoute(items);
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<Layout items={props.items} />} />
+          <Route path='/' element={<Layout items={items} />} />
           <Route path="*" element={<NoMatch />} />
-          {routesList}
+          {routeList}
         </Routes>
       </Router>
     </>
   );
-}
+};
