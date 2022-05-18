@@ -3,11 +3,22 @@ import { Routes, BrowserRouter as Router, Route, Outlet } from "react-router-dom
 import { IMenuItem } from "../../App";
 import { NavMenuLink } from "./NavMenuLink";
 
+interface IProps {
+  items: IMenuItem[]
+}
+
+interface IPage {
+  route: IMenuItem
+}
+
+const NoMatch = () => <h3>No Match<Back /></h3>;
+export const Back = () => <NavMenuLink to="/">Back</NavMenuLink>;
+
 const Layout: React.FC<IProps> = ({items}) => {
   const List = items.map((item, index) => 
     item.path?
       <NavMenuLink to={item.path} key={index}>
-        {item.element}
+        {item.path}
       </NavMenuLink>
       :
       null
@@ -15,7 +26,6 @@ const Layout: React.FC<IProps> = ({items}) => {
   
   return (
     <>
-      <h1>Navigation Menu</h1>
       <nav className="navigation-menu">
         {List}
       </nav>
@@ -23,24 +33,16 @@ const Layout: React.FC<IProps> = ({items}) => {
     </>
   );
 };
-const Back = () => <NavMenuLink to="/">Back</NavMenuLink>;
-
-interface IPage {
-  route: IMenuItem
-}
 
 const Page = ({route}: IPage) => {
-  console.log(route.path);
   return <>
-    <NavMenuLink to={route.path}>Link</NavMenuLink>
+    {route.element}
     <Outlet />
-    <Back />
   </>;
 };
 
 const generateRoute = (items: IMenuItem[]) => {
   return items.map( (route: IMenuItem) => {
-    console.log(route.path);
     if(route.items !== undefined && route.items.length !== 0) {
       return <Route 
         path={route.path}
@@ -54,16 +56,10 @@ const generateRoute = (items: IMenuItem[]) => {
     return <Route 
       path={route.path} 
       key={route.path} 
-      element={route.element}
+      element={<Page route={route} />}
     />;
   });
 };
-
-const NoMatch = () => <h3>No Match<NavMenuLink to="/">Back</NavMenuLink></h3>;
-
-interface IProps {
-  items: IMenuItem[]
-}
 
 export const NavigationMenu: React.FC<IProps> = ({items}) => {
   const routeList = generateRoute(items);
@@ -72,8 +68,8 @@ export const NavigationMenu: React.FC<IProps> = ({items}) => {
       <Router>
         <Routes>
           <Route path='/' element={<Layout items={items} />} />
-          <Route path="*" element={<NoMatch />} />
           {routeList}
+          <Route path="*" element={<NoMatch />} />
         </Routes>
       </Router>
     </>

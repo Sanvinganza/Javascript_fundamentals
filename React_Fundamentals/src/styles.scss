@@ -43,6 +43,7 @@ ul {
 .todo {
   display: flex;
   min-width: 380px;
+  background: url(./assets/app-bg.jpg) no-repeat;
   flex-direction: column;
   position: absolute;
   left: calc(50% - 110px);
@@ -123,7 +124,6 @@ ul {
 
 .app {
   position: relative;
-  background: url(./assets/app-bg.jpg) no-repeat;
   min-height: 720px;
 }
 

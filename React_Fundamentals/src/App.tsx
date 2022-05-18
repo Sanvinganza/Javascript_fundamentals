@@ -1,6 +1,7 @@
 // import { ProgressBarForm } from './common/ProgressBar/ProgressBarForm';
 // import { SearchInputForm } from './common/SearchInput/SearchInputForm';
 import { ReactNode } from 'react';
+import { useParams } from 'react-router';
 import { NavigationMenu } from './common/NavigationMenu';
 import { About, AboutDiscription, Home, HomeDiscription, News } from './common/NavigationMenu/components';
 // import ToDoList from './common/ToDoList';
@@ -16,7 +17,11 @@ export default function App() {
   interface INewsItem {
     text: string
   }
-  const NewsItem = ({text}: INewsItem) => <p>{text}</p>;
+  const NewsItem = ({text}: INewsItem) => {
+    const param = useParams();
+    return <h3>{text}{param.id}</h3>;
+  };
+  
   const menuItems: IMenuItem[] = [
     {
       element: <Home />,
@@ -34,15 +39,7 @@ export default function App() {
       items: [
         {
           element: <NewsItem text="first news" />, 
-          path: ":1"
-        },
-        {
-          element: <NewsItem text="second news" /> ,
-          path: ":2"
-        },
-        {
-          element: <NewsItem text="third news" />, 
-          path: ":3"
+          path: ":id"
         }
       ]
     },
@@ -52,13 +49,7 @@ export default function App() {
       items: [
         {
           element: <AboutDiscription />,
-          path: "discription",
-          items: [
-            {
-              element:  <NewsItem text="About news" />,
-              path: "one"
-            }
-          ]
+          path: "discription"
         }
       ]
     }
