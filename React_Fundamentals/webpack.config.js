@@ -79,9 +79,8 @@ const config = {
     }
   },
   devServer: {
-    'static': {
-      directory: './dist'
-    }
+    historyApiFallback: true,
+    
   },
   resolve: {
     extensions: [

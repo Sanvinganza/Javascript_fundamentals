@@ -43,6 +43,7 @@ ul {
 .todo {
   display: flex;
   min-width: 380px;
+  background: url(./assets/app-bg.jpg) no-repeat;
   flex-direction: column;
   position: absolute;
   left: calc(50% - 110px);
@@ -123,7 +124,6 @@ ul {
 
 .app {
   position: relative;
-  background: url(./assets/app-bg.jpg) no-repeat;
   min-height: 720px;
 }
 
@@ -131,4 +131,28 @@ body {
   background-color: #fafafa;
   margin: 0;
   padding: 0;
+}
+
+a {
+  padding: 5px;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: $black-color;
+  font-weight: 800;
+}
+
+.page {
+  display: flex;
+  margin: 10px;
+  background-color: $grey-color;
+}
+
+.navigation-menu {
+  display: flex;
+  justify-content: center;
+  & * {
+    color:rgb(44, 44, 44);
+    padding: 5px;
+    background-color: transparent;
+  }
 }
