@@ -8,7 +8,7 @@ export interface IItems {
 }
 
 export interface IDismensions {
-    checked: false,
+    checked: boolean,
     subcategory: string,
     items: IItems[]
 }
@@ -23,17 +23,17 @@ export interface IState {
 
 const initialState: IState = {
   contexts: [
-    {
-      checked: false,
-      category: 'myCategory',
-      dismensions: [
-        {
-          checked: false,
-          subcategory: 'mySubCategory',
-          items: [{checked: true, item: 'item1'}]
-        }
-      ]
-    }
+    // {
+    //   category: 'myCategory',
+    //   checked: true,
+    //   dismensions: [
+    //     {
+    //       checked: false,
+    //       subcategory: 'mySubCategory',
+    //       items: [{checked: true, item: 'item1'}]
+    //     }
+    //   ]
+    // }
   ]
 };
 
@@ -49,8 +49,13 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
   switch (action.type) {
 
   case SET_STATE:
-    console.log('ACTION SET STATE = ', action.payload.state);
-    return { ...state, ...action.payload.state };
+    console.log('ACTION SET_STATE = ', {contexts: [...state.contexts, ...action.payload.state.contexts]});
+    return { 
+      contexts: [
+        ...state.contexts, 
+        ...action.payload.state.contexts
+      ]
+    };
   default: return state;
   }
 };

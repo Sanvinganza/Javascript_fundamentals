@@ -4,7 +4,7 @@ import {
   SELECT_ITEM,
   SET_STATE
 } from './actions.types';
-import { IAction } from './reducer';
+import { IAction, IState } from './reducer';
 
 export const selectContext = (list: IAction) => {
   return {
@@ -33,7 +33,7 @@ export const selectItem = (list: IAction) => {
   };
 };
   
-export const setState = (state: []) => {
+export const setState = (state: IState) => {
   return {
     type: SET_STATE,
     payload: {

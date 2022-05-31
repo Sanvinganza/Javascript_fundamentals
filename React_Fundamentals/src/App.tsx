@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 // import { About, AboutDiscription, Home, HomeDiscription, News } from './common/NavigationMenu/components';
 // import ToDoList from './common/ToDoList';
 import "react-widgets/scss/styles.scss";
-import { dataToState, IWigetFilterProps, WigetFilter } from './common/WigetFilter';
+import { WigetFilter } from './common/WigetFilter';
 import { store } from './common/WigetFilter/redux/store';
 
 export interface IMenuItem {
