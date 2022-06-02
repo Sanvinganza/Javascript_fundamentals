@@ -4,31 +4,32 @@ import {
   SELECT_ITEM,
   SET_STATE
 } from './actions.types';
-import { IAction, IState } from './reducer';
+import { IState } from './reducer';
 
-export const selectContext = (list: IAction) => {
+export const selectContext = (category: string, value: boolean) => {
   return {
     type: SELECT_CONTEXT,
     payload: {
-      list
+      category,
+      value
     }
   };
 };
 
-export const selectDismension = (list: IAction) => {
+export const selectDismension = (category: string) => {
   return {
     type: SELECT_DISMENSION,
     payload: {
-      list
+      category
     }
   };
 };
 
-export const selectItem = (list: IAction) => {
+export const selectItem = (item: string) => {
   return {
     type: SELECT_ITEM,
     payload: {
-      list
+      item
     }
   };
 };

@@ -1,4 +1,5 @@
 import {
+  SELECT_CONTEXT,
   SET_STATE
 } from './actions.types';
 
@@ -22,34 +23,38 @@ export interface IState {
 }
 
 const initialState: IState = {
-  contexts: [
-    // {
-    //   category: 'myCategory',
-    //   checked: true,
-    //   dismensions: [
-    //     {
-    //       checked: false,
-    //       subcategory: 'mySubCategory',
-    //       items: [{checked: true, item: 'item1'}]
-    //     }
-    //   ]
-    // }
-  ]
+  contexts: []
 };
 
 export interface IAction {
     type: string,
     payload: {
         list: Array<string>,
-        state: IState
+        state: IState,
+        category: string,
+        value: boolean
     }
 }
 
 export const rootReducer = (state: IState = initialState, action: IAction) => {
   switch (action.type) {
+      
+  case SELECT_CONTEXT:
+    return {
+      contexts: [
+        ...state.contexts.map( (context) => {
+          if(context.category === action.payload.category){
+            return {
+              ...context,
+              checked: action.payload.value
+            };
+          }
 
+          return context;
+        })
+      ]
+    };
   case SET_STATE:
-    console.log('ACTION SET_STATE = ', {contexts: [...state.contexts, ...action.payload.state.contexts]});
     return { 
       contexts: [
         ...state.contexts, 

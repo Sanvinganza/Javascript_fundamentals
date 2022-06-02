@@ -2,10 +2,9 @@ import { Button } from 'antd';
 import * as React from 'react';
 import 'antd/dist/antd.css';
 import { DraggableModal } from 'ant-design-draggable-modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setState } from './redux/actions';
 import { IData } from '../../App';
-import { IState } from './redux/reducer';
 import { Contexts } from './Contexts';
 
 export interface IWigetFilterProps  {
@@ -39,11 +38,6 @@ export function WigetFilter ({data}: IWigetFilterProps) {
   const dispatch = useDispatch();
   const state = dataToState(data);
 
- 
-  const contexts = useSelector((state: IState) => state.contexts);
-
-  console.log('USE_SELECTOR contexts = ',contexts);
-
   const showModal = () => {
     dispatch(setState(state));
     setIsModalVisible(true);
@@ -55,15 +49,12 @@ export function WigetFilter ({data}: IWigetFilterProps) {
 
   return (
     <>
-      {/* <Provider store={store}> */}
       <Button type="primary" onClick={showModal}>
           Open Filter
       </Button>
       <DraggableModal footer={false} title="FILTERS" visible={isModalVisible} onCancel={handleCancel}>
-        <Contexts contexts={contexts}/>
-        {/* <Dismensions /> */}
+        <Contexts />
       </DraggableModal>
-      {/* </Provider> */}
     </>
   );
 }
