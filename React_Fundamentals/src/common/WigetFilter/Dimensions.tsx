@@ -1,16 +1,23 @@
 import { Checkbox } from 'antd';
 import { Multiselect } from 'react-widgets/cjs';
+import { IItem } from './Contexts';
+import { IDismension } from './redux/reducer';
 
-export function Dismensions () {
+interface IDismensions {
+  dismensions: IDismension[]
+}
+
+export function Dismensions ({dismensions}: IDismensions) {
+  console.log(dismensions);
     
   return (
     <>
       <h2>DISMENSIONS</h2> 
       <Multiselect
         busy={false}
-        containerClassName="dismensions"
-        data={['orange', 'purple', 'red', 'blue1', 'purple1', 'red1', 'blue2', 'purple3', 'red4', 'blue5']}
-        renderListItem={ ({item}: any) => <Checkbox>{item}</Checkbox> }
+        showSelectedItemsInList={true}
+        data={dismensions.map( dismension => dismension.subcategory)}
+        renderListItem={ ({item}: IItem) => <Checkbox>{item}</Checkbox> }
       />
     </>
   );

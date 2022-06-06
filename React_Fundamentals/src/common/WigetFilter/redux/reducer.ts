@@ -8,7 +8,7 @@ export interface IItems {
     item: string
 }
 
-export interface IDismensions {
+export interface IDismension {
     checked: boolean,
     subcategory: string,
     items: IItems[]
@@ -18,7 +18,7 @@ export interface IState {
     contexts: {
         checked: boolean,
         category: string,
-        dismensions: IDismensions[]
+        dismensions: IDismension[]
     }[]
 }
 
@@ -38,7 +38,7 @@ export interface IAction {
 
 export const rootReducer = (state: IState = initialState, action: IAction) => {
   switch (action.type) {
-      
+  
   case SELECT_CONTEXT:
     return {
       contexts: [

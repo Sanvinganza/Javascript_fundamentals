@@ -34,7 +34,6 @@ export const dataToState = (data: IData) => {
 
 export function WigetFilter ({data}: IWigetFilterProps) {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
-  // const [state, setState] = React.useState(dataToState(data));
   const dispatch = useDispatch();
   const state = dataToState(data);
 
