@@ -1,56 +1,50 @@
 import { Checkbox } from 'antd';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Multiselect } from 'react-widgets/cjs';
 import { IItem } from './Contexts';
 import { Items } from './Items';
-import { selectDismension } from './redux/actions';
-import { IDismension, IState } from './redux/reducer';
+import { selectDimension } from './redux/actions';
+import { getCompletedDimensionsSelector } from './selectors/Dimensions/getCompletedDimensionsSelector';
+import { getDimensionsSelector } from './selectors/Dimensions/getDimensionsSelector';
+import { getValueDimensionSelector } from './selectors/Dimensions/getValueDimensionSelector';
 
-interface IDismensions {
-  dismensions: IDismension[]
-}
+const arrayCompletedDimensions: Array<string> = [];
 
-export function Dismensions ({dismensions}: IDismensions) {
-  // console.log('Dismensions = ', dismensions);
-  const contexts = useSelector((state: IState) => state.contexts);
-  const [checked, setChecked] = useState(false);
+const CheckboxDimension = ({item}: IItem) => {
+  const checked = getValueDimensionSelector(item);
+
+  return <Checkbox checked={checked}>{item}</Checkbox>;
+};
+
+export function Dismensions () {
   const dispatch = useDispatch();
 
-  const dismensionsArray = useSelector((state: IState) => state.contexts
-    .filter( context => context.checked === true)
-    .map( context => context.dismensions)
-    .flat(2)
-  );
-  
-  // console.log('ITEMS = ',dismensionsArray
-  // .filter( dismension => dismension.checked === true)
-  // .map( dismesion => {
-  //   return dismesion.items.map( item => {
-  //     return item.name;
-  //   });
-  // }).flat(2)
-  // );
-  
+  const dimensions = getDimensionsSelector();
+  const completedDimensions = getCompletedDimensionsSelector();
+
   return (
     <>
       <h2>DISMENSIONS</h2> 
       <Multiselect
         onSelect={(item: string) => {
-          dispatch(selectDismension(item, !checked));
+          if(arrayCompletedDimensions.includes(item)) {
+            dispatch(selectDimension(item, false));
+            if(arrayCompletedDimensions.length !== 0)
+              arrayCompletedDimensions.splice(arrayCompletedDimensions.indexOf(item), 1);
+          } else {
+            dispatch(selectDimension(item, true));
+            arrayCompletedDimensions.push(item);
+          }
         }}
-        busy={false}
         showSelectedItemsInList={true}
-        data={dismensionsArray.map( dismension => dismension.subcategory)}
-        renderListItem={ ({item}: IItem) => <Checkbox>{item}</Checkbox> }
+        data={dimensions.map(dimension => dimension.subcategory)}
+        renderListItem={({item}: IItem) => <CheckboxDimension item={item}/>}
       />
-      {/* {dismensions.filter( dismension => {
-        return dismension.checked !== true;
-      }).length !== 0?
-        <Items items={items} />
+      {completedDimensions.length === 0?
+        <Items />
         :
         null
-      } */}
+      }
     </>
   );
 }

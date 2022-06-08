@@ -101,7 +101,7 @@ export default function App() {
       {/* <ToDoList /> */}
       {/* <NavigationMenu items={menuitems}/> */}
       <Provider store={store}>
-        <DraggableModalProvider >    
+        <DraggableModalProvider>    
           <WigetFilter data={filterData} />
         </DraggableModalProvider>
       </Provider>

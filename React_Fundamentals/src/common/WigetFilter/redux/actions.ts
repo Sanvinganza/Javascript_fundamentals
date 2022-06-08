@@ -1,6 +1,6 @@
 import {
   SELECT_CONTEXT,
-  SELECT_DISMENSION,
+  SELECT_DIMENSION,
   SELECT_ITEM,
   SET_STATE
 } from './actions.types';
@@ -16,9 +16,9 @@ export const selectContext = (category: string, value: boolean) => {
   };
 };
 
-export const selectDismension = (subcategory: string, value: boolean) => {
+export const selectDimension = (subcategory: string, value: boolean) => {
   return {
-    type: SELECT_DISMENSION,
+    type: SELECT_DIMENSION,
     payload: {
       subcategory,
       value

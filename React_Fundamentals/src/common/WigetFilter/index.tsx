@@ -17,11 +17,11 @@ export const dataToState = (data: IData) => {
       return {
         category: context[0],
         checked: false,
-        dismensions: Object.entries(context[1]).map( dismensions => {
+        dimensions: Object.entries(context[1]).map( dimensions => {
           return {
-            subcategory: dismensions[0],
+            subcategory: dimensions[0],
             checked: false,
-            items: dismensions[1].map( item => {
+            items: dimensions[1].map( item => {
               return {
                 checked: false,
                 name: item
@@ -51,7 +51,12 @@ export function WigetFilter ({data}: IWigetFilterProps) {
       <Button type="primary" onClick={showModal}>
           Open Filter
       </Button>
-      <DraggableModal footer={false} title="FILTERS" visible={isModalVisible} onCancel={handleCancel}>
+      <DraggableModal 
+        footer={false} 
+        title="FILTERS" 
+        visible={isModalVisible} 
+        onCancel={handleCancel}
+      >
         <Contexts />
       </DraggableModal>
     </>

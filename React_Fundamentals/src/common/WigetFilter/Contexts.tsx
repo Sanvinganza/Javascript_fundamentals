@@ -1,34 +1,29 @@
 import { Checkbox } from 'antd';
-import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { DropdownList, Multiselect } from 'react-widgets/cjs';
+import { DropdownList } from 'react-widgets/cjs';
 import { Dismensions } from './Dimensions';
 import { selectContext } from './redux/actions';
-import { getCompletedContextsSelector } from './selectors/getCompletedContextsSelector';
-import { getContextsSelector } from './selectors/getContextsSelector';
-import { getDismensionsSelector } from './selectors/getDimenisonsSelector';
+import { getCompletedContextsSelector } from './selectors/Contexts/getCompletedContextsSelector';
+import { getContextsSelector } from './selectors/Contexts/getContextsSelector';
+import { getValueContextSelector } from './selectors/Contexts/getValueContextSelector';
 
 export interface IItem {
   item: string
 }
 
-const CheckboxItem = ({item}: IItem) => {
-  const [checked, setChecked] = useState(false);
+const CheckboxContext = ({item}: IItem) => {
+  const checked = getValueContextSelector(item);
 
-  return (
-    <Checkbox 
-      checked={checked}
-      onClick={() => setChecked(!checked)}
-    >{item}</Checkbox>
-  );
+  return <Checkbox checked={checked}>{item}</Checkbox>;
 };
+
 const arrayCompletedContexts: Array<string> = [];
 
 export function Contexts () {
   const dispatch = useDispatch();
 
-  const contexts = getContextsSelector(); 
-  const dismensions = getDismensionsSelector();
+  const contexts = getContextsSelector();
+
   const completedContexts = getCompletedContextsSelector();
   
   return (
@@ -39,20 +34,17 @@ export function Contexts () {
           if(arrayCompletedContexts.includes(item)) {
             dispatch(selectContext(item, false));
             arrayCompletedContexts.splice(arrayCompletedContexts.indexOf(item), 1);
-            console.log('if CONTEXT', arrayCompletedContexts);
           } else {
             dispatch(selectContext(item, true));
             arrayCompletedContexts.push(item);
-            console.log('else CONTEXT', arrayCompletedContexts);
           }
         }}
-        showSelectedItemsInList={true}
-        data={contexts.map( item => item.category )}
+        data={contexts.map(item => item.category)}
         renderListItem={ 
-          ({item}: IItem) => <CheckboxItem item={item} />}
+          ({item}: IItem) => <CheckboxContext item={item} />}
       />
       {completedContexts.length !== 0?
-        <Dismensions dismensions={dismensions}/>
+        <Dismensions />
         :
         null
       }

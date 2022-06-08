@@ -1,6 +1,6 @@
 import {
   SELECT_CONTEXT,
-  SELECT_DISMENSION,
+  SELECT_DIMENSION,
   SELECT_ITEM,
   SET_STATE
 } from './actions.types';
@@ -10,7 +10,7 @@ export interface IItems {
     name: string
 }
 
-export interface IDismension {
+export interface IDimension {
     checked: boolean,
     subcategory: string,
     items: IItems[]
@@ -19,7 +19,7 @@ export interface IDismension {
 export interface IContexts {
   checked: boolean,
     category: string,
-    dismensions: IDismension[]
+    dimensions: IDimension[]
 }
 
 export interface IState {
@@ -49,20 +49,16 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
         ...state.contexts.map( (context) => {
           return {
             ...context,
-            dismensions: context.dismensions.map( (dismension) => {
+            dimensions: context.dimensions.map( (dimension) => {
               return {
-                ...dismension,
-                items: dismension.items.map( (item) => {
-
-                  console.log('SELECT_ITEM', item);
-                  
+                ...dimension,
+                items: dimension.items.map( (item) => {
                   if(item.name === action.payload.item) {
                     return {
                       ...item,
                       checked: action.payload.value
                     };
                   }
-
                   return item;
                 })
               };
@@ -81,26 +77,24 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
               checked: action.payload.value
             };
           }
-
           return context;
         })
       ]
     };
-  case SELECT_DISMENSION:
+  case SELECT_DIMENSION:
     return {
       contexts: {
         ...state.contexts.map( (context) => {
           return {
             ...context,
-            dismensions: context.dismensions.map( (dismension) => {
-              if(dismension.subcategory === action.payload.subcategory){
+            dimensions: context.dimensions.map( (dimension) => {
+              if(dimension.subcategory === action.payload.subcategory){
                 return {
-                  ...dismension,
+                  ...dimension,
                   checked: action.payload.value
                 };
               }
-
-              return dismension;
+              return dimension;
             })
           };
         })
