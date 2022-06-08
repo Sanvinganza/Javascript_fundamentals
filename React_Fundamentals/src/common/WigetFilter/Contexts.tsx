@@ -1,71 +1,60 @@
 import { Checkbox } from 'antd';
-import { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Multiselect } from 'react-widgets/cjs';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { DropdownList, Multiselect } from 'react-widgets/cjs';
 import { Dismensions } from './Dimensions';
 import { selectContext } from './redux/actions';
-import { IState } from './redux/reducer';
+import { getCompletedContextsSelector } from './selectors/getCompletedContextsSelector';
+import { getContextsSelector } from './selectors/getContextsSelector';
+import { getDismensionsSelector } from './selectors/getDimenisonsSelector';
 
 export interface IItem {
   item: string
 }
 
 const CheckboxItem = ({item}: IItem) => {
-  const [checked, setChecked] = useState(useSelector((state: IState) => state.contexts.filter( context => {
-    return context.category === item;
-  })[0].checked));
-
-  const dispatch = useDispatch();
+  const [checked, setChecked] = useState(false);
 
   return (
     <Checkbox 
       checked={checked}
-      onClick={() => {
-        dispatch(selectContext(item, !checked));
-        setChecked(!checked);
-        setTimeout(() => {
-          console.log('ON CHECKED = ',item, checked);
-        }, 100);       
-      }
-      }>{item}</Checkbox>
+      onClick={() => setChecked(!checked)}
+    >{item}</Checkbox>
   );
 };
+const arrayCompletedContexts: Array<string> = [];
 
 export function Contexts () {
-  const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
 
-  const contexts = useSelector((state: IState) => state.contexts);
-
-  const dismensions = contexts
-    .filter( context => context.checked === true)
-    .map( context => context.dismensions)
-    .flat(2);
-
+  const contexts = getContextsSelector(); 
+  const dismensions = getDismensionsSelector();
+  const completedContexts = getCompletedContextsSelector();
+  
   return (
     <>
       <h2>CONTEXTS</h2> 
-      <Multiselect
+      <DropdownList
         onSelect={(item: string) => {
-          dispatch(selectContext(item, !checked));
-          setChecked(!checked);
-          setTimeout(() => {
-            console.log('ON SELECTE = ',item, checked);
-          }, 100);
+          if(arrayCompletedContexts.includes(item)) {
+            dispatch(selectContext(item, false));
+            arrayCompletedContexts.splice(arrayCompletedContexts.indexOf(item), 1);
+            console.log('if CONTEXT', arrayCompletedContexts);
+          } else {
+            dispatch(selectContext(item, true));
+            arrayCompletedContexts.push(item);
+            console.log('else CONTEXT', arrayCompletedContexts);
+          }
         }}
         showSelectedItemsInList={true}
         data={contexts.map( item => item.category )}
         renderListItem={ 
           ({item}: IItem) => <CheckboxItem item={item} />}
       />
-      {
-        contexts.filter( context => {
-          return context.checked === true;
-        }).length !== 0? 
-        
-          <Dismensions dismensions={dismensions}/>
-          :
-          null
+      {completedContexts.length !== 0?
+        <Dismensions dismensions={dismensions}/>
+        :
+        null
       }
     </>
   );

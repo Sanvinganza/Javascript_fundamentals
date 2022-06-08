@@ -24,7 +24,7 @@ export const dataToState = (data: IData) => {
             items: dismensions[1].map( item => {
               return {
                 checked: false,
-                item: item
+                name: item
               };
             })};
         })};

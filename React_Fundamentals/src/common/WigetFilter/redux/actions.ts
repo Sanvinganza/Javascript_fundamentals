@@ -16,20 +16,22 @@ export const selectContext = (category: string, value: boolean) => {
   };
 };
 
-export const selectDismension = (category: string) => {
+export const selectDismension = (subcategory: string, value: boolean) => {
   return {
     type: SELECT_DISMENSION,
     payload: {
-      category
+      subcategory,
+      value
     }
   };
 };
 
-export const selectItem = (item: string) => {
+export const selectItem = (item: string, value: boolean) => {
   return {
     type: SELECT_ITEM,
     payload: {
-      item
+      item,
+      value
     }
   };
 };
