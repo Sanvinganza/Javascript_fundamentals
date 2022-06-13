@@ -72,9 +72,23 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
       contexts: [
         ...state.contexts.map( (context) => {
           if(context.category === action.payload.category){
+            if(!action.payload.value) {
+              return {
+                ...context,
+                checked: action.payload.value
+              };  
+            }
+
             return {
               ...context,
-              checked: action.payload.value
+              checked: action.payload.value,
+              dimensions: [
+                ...context.dimensions.map( 
+                  dimension => {
+                    dimension.checked = false;
+                    return dimension;
+                  })
+              ]
             };
           }
           return context;
@@ -87,15 +101,29 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
         ...state.contexts.map( (context) => {
           return {
             ...context,
-            dimensions: context.dimensions.map( (dimension) => {
-              if(dimension.subcategory === action.payload.subcategory){
-                return {
-                  ...dimension,
-                  checked: action.payload.value
-                };
-              }
-              return dimension;
-            })
+            dimensions: context.dimensions
+              .map( (dimension) => {
+                if(dimension.subcategory === action.payload.subcategory){
+                  if(!action.payload.value) {
+                    return {
+                      ...dimension,
+                      checked: action.payload.value
+                    };
+                  }
+
+                  return {
+                    ...dimension,
+                    checked: action.payload.value,
+                    items: [...dimension.items
+                      .map( item => {
+                        item.checked = false;
+                        return item;
+                      })
+                    ]
+                  };
+                }
+                return dimension;
+              })
           };
         })
       ]

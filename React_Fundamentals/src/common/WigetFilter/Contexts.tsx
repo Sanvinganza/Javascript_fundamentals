@@ -1,6 +1,6 @@
 import { Checkbox } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { DropdownList, Multiselect } from 'react-widgets/cjs';
+import { Multiselect } from 'react-widgets/cjs';
 import { Dismensions } from './Dimensions';
 import { selectContext } from './redux/actions';
 import { getCompletedContextsSelector } from './selectors/Contexts/getCompletedContextsSelector';
@@ -13,7 +13,7 @@ export interface IItem {
 
 const CheckboxContext = ({item}: IItem) => {
   const checked = useSelector(getValueContextSelector(item));
-  console.log('CheckboxContext = ', item +`=`,checked);
+
   return <Checkbox checked={checked}>{item}</Checkbox>;
 };
 

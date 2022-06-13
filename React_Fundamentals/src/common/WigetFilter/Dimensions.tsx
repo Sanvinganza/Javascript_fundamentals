@@ -35,7 +35,7 @@ export function Dismensions () {
             arrayCompletedDimensions.push(item);
           }
         }}
-        value={completedDimensions.map( completedDimension => completedDimension.subcategory)}
+        value={completedDimensions.map(completedDimension => completedDimension.subcategory)}
         showSelectedItemsInList={true}
         data={dimensions.map(dimension => dimension.subcategory)}
         renderListItem={({item}: IItem) => <CheckboxDimension item={item}/>}
