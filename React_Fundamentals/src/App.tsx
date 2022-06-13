@@ -67,29 +67,29 @@ export default function App() {
   // dismensions = 
   const filterData: IData  = {
     action: {
-      tv: ['item1', 'item2', 'item3'],
-      novel: ['item1', 'item2', 'item3'],
-      superhero: ['item1', 'item2', 'item3']
+      tv: ['item191', 'item21', 'item31'],
+      novel: ['item192', 'item22', 'item32'],
+      superhero: ['item193', 'item23', 'item33']
     },
     comedy: {
-      animation: ['item4', 'item5', 'item6'],
-      comics: ['item4', 'item5', 'item6'],
-      crime: ['item4', 'item5', 'item6']
+      animation: ['item48', 'item58', 'item686'],
+      comics: ['item412', 'item51', 'item68'],
+      crime: ['item432', 'item544', 'item65']
     },
     drama: {
-      satire: ['item7', 'item8', 'item9'],
-      sitcoms: ['item7', 'item8', 'item9'],
-      parodies: ['item7', 'item8', 'item9']
+      satire: ['item7123', 'item844', 'item923'],
+      sitcoms: ['item714', 'item85', 'item596'],
+      parodies: ['item733', 'item8564', 'item6966']
     },
     fantasy: {
-      romantic: ['item10', 'item11', 'item12'],
-      dark: ['item10', 'item11', 'item12'],
-      fairytail: ['item10', 'item11', 'item12']
+      romantic: ['item110', 'item111', 'item112'],
+      dark: ['item120', 'item131', 'item124'],
+      fairytail: ['item105', 'item116', 'item176']
     },
     horror: {
-      monster: ['item13', 'item14', 'item15'],
-      paranormal: ['item13', 'item14', 'item15'],
-      psyhological: ['item13', 'item14', 'item15']
+      monster: ['item1533', 'item123', 'item1235'],
+      paranormal: ['item1353', 'item142', 'item135'],
+      psyhological: ['item133', 'item156', 'item1235']
     },
   };
 

@@ -1,5 +1,5 @@
 import { Checkbox } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Multiselect } from "react-widgets/cjs";
 import { IItem } from "./Contexts";
 import { selectItem } from "./redux/actions";
@@ -10,7 +10,8 @@ import { SearchOutlined } from '@ant-design/icons';
 const arrayCompletedItems: Array<string> = [];
 
 const CheckboxItem = ({item}: IItem) => {
-  const checked = getValueItemSelector(item);
+  const checked = useSelector(getValueItemSelector(item));
+
 
   return <Checkbox checked={checked}>{item}</Checkbox>;
 };

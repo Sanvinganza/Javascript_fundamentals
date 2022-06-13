@@ -1,6 +1,6 @@
 import { Checkbox } from 'antd';
-import { useDispatch } from 'react-redux';
-import { DropdownList } from 'react-widgets/cjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { DropdownList, Multiselect } from 'react-widgets/cjs';
 import { Dismensions } from './Dimensions';
 import { selectContext } from './redux/actions';
 import { getCompletedContextsSelector } from './selectors/Contexts/getCompletedContextsSelector';
@@ -12,8 +12,8 @@ export interface IItem {
 }
 
 const CheckboxContext = ({item}: IItem) => {
-  const checked = getValueContextSelector(item);
-
+  const checked = useSelector(getValueContextSelector(item));
+  console.log('CheckboxContext = ', item +`=`,checked);
   return <Checkbox checked={checked}>{item}</Checkbox>;
 };
 
@@ -22,14 +22,14 @@ const arrayCompletedContexts: Array<string> = [];
 export function Contexts () {
   const dispatch = useDispatch();
 
-  const contexts = getContextsSelector();
+  const contexts = useSelector(getContextsSelector());
 
-  const completedContexts = getCompletedContextsSelector();
+  const completedContexts = useSelector(getCompletedContextsSelector());
   
   return (
     <>
       <h2>CONTEXTS</h2> 
-      <DropdownList
+      <Multiselect
         onSelect={(item: string) => {
           if(arrayCompletedContexts.includes(item)) {
             dispatch(selectContext(item, false));
@@ -39,6 +39,7 @@ export function Contexts () {
             arrayCompletedContexts.push(item);
           }
         }}
+        showSelectedItemsInList={true}
         data={contexts.map(item => item.category)}
         renderListItem={ 
           ({item}: IItem) => <CheckboxContext item={item} />}

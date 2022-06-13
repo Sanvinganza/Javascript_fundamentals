@@ -45,7 +45,7 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
   switch (action.type) {
   case SELECT_ITEM : 
     return {
-      contexts: {
+      contexts: [
         ...state.contexts.map( (context) => {
           return {
             ...context,
@@ -65,7 +65,7 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
             })
           };
         })
-      }
+      ]
     };
   case SELECT_CONTEXT:
     return {
@@ -83,7 +83,7 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
     };
   case SELECT_DIMENSION:
     return {
-      contexts: {
+      contexts: [
         ...state.contexts.map( (context) => {
           return {
             ...context,
@@ -98,12 +98,11 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
             })
           };
         })
-      }
+      ]
     };
   case SET_STATE:
     return { 
       contexts: [
-        ...state.contexts, 
         ...action.payload.state.contexts
       ]
     };
