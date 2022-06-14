@@ -37,7 +37,7 @@ export interface IAction {
         category: string,
         subcategory: string,
         value: boolean,
-        item: string
+        name: string
     }
 }
 
@@ -49,20 +49,24 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
         ...state.contexts.map( (context) => {
           return {
             ...context,
-            dimensions: context.dimensions.map( (dimension) => {
-              return {
-                ...dimension,
-                items: dimension.items.map( (item) => {
-                  if(item.name === action.payload.item) {
-                    return {
-                      ...item,
-                      checked: action.payload.value
-                    };
-                  }
-                  return item;
-                })
-              };
-            })
+            dimensions: [
+              ...context.dimensions.map( dimension => {
+                return {
+                  ...dimension,
+                  items: [...dimension.items.map( item => {
+                    if(item.name === action.payload.name) {
+                      return {
+                        ...item,
+                        checked: action.payload.value
+                      };
+                    }
+
+                    return item;
+                  })
+                  ]
+                };
+              })
+            ]
           };
         })
       ]
@@ -85,8 +89,10 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
               dimensions: [
                 ...context.dimensions.map( 
                   dimension => {
-                    dimension.checked = false;
-                    return dimension;
+                    return {
+                      ...dimension,
+                      checked: false
+                    };
                   })
               ]
             };
@@ -98,11 +104,11 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
   case SELECT_DIMENSION:
     return {
       contexts: [
-        ...state.contexts.map( (context) => {
+        ...state.contexts.map( context => {
           return {
             ...context,
-            dimensions: context.dimensions
-              .map( (dimension) => {
+            dimensions: [
+              ...context.dimensions.map( dimension => {
                 if(dimension.subcategory === action.payload.subcategory){
                   if(!action.payload.value) {
                     return {
@@ -116,14 +122,18 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
                     checked: action.payload.value,
                     items: [...dimension.items
                       .map( item => {
-                        item.checked = false;
-                        return item;
+                        return {
+                          ...item,
+                          checked: false
+                        };
                       })
                     ]
                   };
                 }
+                
                 return dimension;
               })
+            ]
           };
         })
       ]

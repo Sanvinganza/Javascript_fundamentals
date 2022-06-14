@@ -26,11 +26,11 @@ export const selectDimension = (subcategory: string, value: boolean) => {
   };
 };
 
-export const selectItem = (item: string, value: boolean) => {
+export const selectItem = (name: string, value: boolean) => {
   return {
     type: SELECT_ITEM,
     payload: {
-      item,
+      name,
       value
     }
   };
