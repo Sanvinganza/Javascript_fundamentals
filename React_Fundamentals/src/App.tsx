@@ -67,18 +67,18 @@ export default function App() {
   // dismensions = 
   const filterData: IData  = {
     action: {
-      tv: ['item191', 'item21', 'item31'],
-      novel: ['item192', 'item22', 'item32'],
-      superhero: ['item193', 'item23', 'item33']
+      tv: ['Aaitem191', 'Bcitem21', 'Abitem31'],
+      novel: ['dbitem192', 'aitem22', 'fitem32'],
+      superhero: ['Aitem193', 'Vitem23', 'Dcitem33']
     },
     comedy: {
       animation: ['item48', 'item58', 'item686'],
-      comics: ['item412', 'item51', 'item68'],
-      crime: ['item432', 'item544', 'item65']
+      comics: ['item412', 'item51', 'ditem68'],
+      crime: ['item432', 'eitem544', 'item65']
     },
     drama: {
       satire: ['item7123', 'item844', 'item923'],
-      sitcoms: ['item714', 'item85', 'item596'],
+      sitcoms: ['item714', 'fitem85', 'item596'],
       parodies: ['item733', 'item8564', 'item6966']
     },
     fantasy: {

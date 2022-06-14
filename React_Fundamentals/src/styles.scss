@@ -161,16 +161,16 @@ a {
 .rw-multiselect-tag-btn {
   display: none;
 }
-// .items-container {
-//   display: flex;
-//   flex-direction: row;
-//   font-size: 2em;
-//   > * {
-//     justify-content: center;
-//     align-items: center;
-//   }
-// }
 
-// .rw-multiselect{
-//   width: 500px;
-// }
+button[type='button'] {
+  border: none;
+}
+
+.optionsItems{
+  display: flex;
+  align-items: center;
+  & * {
+    margin: 0 2px;
+    max-width: 110px;
+  }
+}
