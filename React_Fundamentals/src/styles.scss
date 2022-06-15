@@ -166,11 +166,24 @@ button[type='button'] {
   border: none;
 }
 
-.optionsItems{
+.optionsItems {
+  margin: 2px 0;
   display: flex;
   align-items: center;
   & * {
     margin: 0 2px;
     max-width: 110px;
   }
+}
+
+.items-container {
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  .rw-multiselect {
+    width: 100%;
+  }
+  & > * {
+    margin: 0 2px;
+  }  
 }

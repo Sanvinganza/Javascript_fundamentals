@@ -7,5 +7,6 @@ export const getItemsSelector = () => {
     .flat(2)
     .filter( dimension => dimension.checked)
     .map( dimension => dimension.items)
-    .flat(2);
+    .flat(2)
+    .map( item => item.name);
 };
