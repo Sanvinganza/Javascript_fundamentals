@@ -1,4 +1,4 @@
-import { Button, Checkbox } from "antd";
+import { Checkbox } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Combobox, Multiselect } from "react-widgets/cjs";
 import { IItem } from "./Contexts";
@@ -7,7 +7,10 @@ import { getItemsSelector } from "./selectors/Items/getItemsSelector";
 import { getValueItemSelector } from "./selectors/Items/getValueItemSelector";
 import { SearchOutlined } from '@ant-design/icons';
 import { getCompletedItemsSelector } from "./selectors/Items/getCompletedItemsSelector";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
+import { getReverseSortedDataSelector } from "./selectors/Items/getReverseSortedDataSelector";
+import { getSortedDataSelector } from "./selectors/Items/getSortedDataSelector";
+import { SortButton } from "./SortButton";
 
 const arrayCompletedItems: Array<string> = [];
 
@@ -16,23 +19,28 @@ const Item = ({item}: IItem) => {
   return <Checkbox checked={checked}>{item}</Checkbox>;
 };
 
+export enum sortingMode { 
+  reverseSorted = 'reverseSorted',
+  sorted = 'sorted',
+  unsorted = 'unsorted'
+}
+
 export function Items () {
   const dispatch = useDispatch();
 
   const completedItems = useSelector(getCompletedItemsSelector()).map(completedItem => completedItem.name);
-  const data = useSelector(getItemsSelector());
-
-  const [selectFilter, setSelectFilter] = useState('');
   
-  // const data = useMemo(() => items.slice().sort(), [items]);
+  const data = useSelector(getItemsSelector());
+  const reverseSortedData = useSelector(getReverseSortedDataSelector());
+  const sortedData = useSelector(getSortedDataSelector());
+  
+  const [selectFilter, setSelectFilter] = useState('');
+  const [mode, setMode] = useState(sortingMode.unsorted);
 
   return (
     <>
       <div className="optionsItems">
-        <Button onClick={() => {
-          console.log(data);
-
-        }}>[A-Z]</Button>
+        <SortButton mode={mode} setMode={setMode}/>
         <Combobox
           data={['**', '*_*_', '*_']}
           defaultValue={'**'}
@@ -61,7 +69,9 @@ export function Items () {
           filter={selectFilter}
           showPlaceholderWithValues={true}
           showSelectedItemsInList={true}
-          data={data}
+          data={mode === 'reverseSorted'?
+            reverseSortedData: mode === 'sorted'?
+              sortedData: data}
           renderListItem={({item}: IItem) => <Item item={item}/>}
           open
         />
