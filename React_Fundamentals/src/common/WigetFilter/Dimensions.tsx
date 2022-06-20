@@ -4,14 +4,15 @@ import { Multiselect } from 'react-widgets/cjs';
 import { IItem } from './Contexts';
 import { Items } from './Items';
 import { selectDimension } from './redux/actions';
-import { getCompletedDimensionsSelector } from './selectors/Dimensions/getCompletedDimensionsSelector';
+import { getSelectedDimensionsSelector } from './selectors/Dimensions/getSelectedDimensionsSelector';
 import { getDimensionsSelector } from './selectors/Dimensions/getDimensionsSelector';
-import { getValueDimensionSelector } from './selectors/Dimensions/getValueDimensionSelector';
+import { getIsDimensionSelectedSelector } from './selectors/Dimensions/getIsDimensionSelectedSelector';
+import { useCallback, useMemo } from 'react';
 
-const arrayCompletedDimensions: Array<string> = [];
+const arraySelectedDimensions: Array<string> = [];
 
 const CheckboxDimension = ({item}: IItem) => {
-  const checked = useSelector(getValueDimensionSelector(item));
+  const checked = useSelector(getIsDimensionSelectedSelector(item));
 
   return <Checkbox checked={checked}>{item}</Checkbox>;
 };
@@ -20,31 +21,27 @@ export function Dismensions () {
   const dispatch = useDispatch();
 
   const dimensions = getDimensionsSelector();
-  const completedDimensions = getCompletedDimensionsSelector();
-  
+  const selectedDimensions = getSelectedDimensionsSelector();
+  const memoDimensions = useMemo(() => dimensions.map(dimension => dimension.subcategory), [dimensions]);
   return (
     <>
       <h2>DISMENSIONS</h2> 
       <Multiselect
-        onSelect={(item: string) => {
-          if(arrayCompletedDimensions.includes(item)) {
+        onSelect={useCallback((item: string) => {
+          if(arraySelectedDimensions.includes(item)) {
             dispatch(selectDimension(item, false));
-            arrayCompletedDimensions.splice(arrayCompletedDimensions.indexOf(item), 1);
+            arraySelectedDimensions.splice(arraySelectedDimensions.indexOf(item), 1);
           } else {
             dispatch(selectDimension(item, true));
-            arrayCompletedDimensions.push(item);
+            arraySelectedDimensions.push(item);
           }
-        }}
-        value={completedDimensions.map(completedDimension => completedDimension.subcategory)}
+        }, [])}
+        value={selectedDimensions.map(selectedDimension => selectedDimension.subcategory)}
         showSelectedItemsInList={true}
-        data={dimensions.map(dimension => dimension.subcategory)}
+        data={memoDimensions}
         renderListItem={({item}: IItem) => <CheckboxDimension item={item}/>}
       />
-      {completedDimensions.length !== 0?
-        <Items />
-        :
-        null
-      }
+      {!!selectedDimensions.length && <Items />}
     </>
   );
 }

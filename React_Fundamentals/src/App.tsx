@@ -1,6 +1,5 @@
 // import { ProgressBarForm } from './common/ProgressBar/ProgressBarForm';
 // import { SearchInputForm } from './common/SearchInput/SearchInputForm';
-import { DraggableModalProvider } from 'ant-design-draggable-modal';
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 // import { useParams } from 'react-router';
@@ -63,33 +62,31 @@ export default function App() {
   //     ]
   //   }
   // ];
-  // contexts = Object.entries(filterData).map( ([context]) => context)
-  // dismensions = 
   const filterData: IData  = {
     action: {
-      tv: ['Aaitem191', 'Bcitem21', 'Abitem31'],
-      novel: ['dbitem192', 'aitem22', 'fitem32'],
-      superhero: ['Aitem193', 'Vitem23', 'Dcitem33']
+      action_section_1: ['action_section_1_Item_3', 'action_section_1_Item_2', 'action_section_1_Item_1'],
+      action_section_2: ['action_section_2_Item_1', 'action_section_2_Item_2', 'action_section_2_Item_3'],
+      action_section_3: ['action_section_3_Item_1', 'action_section_3_Item_2', 'action_section_3_Item_3']
     },
     comedy: {
-      animation: ['item48', 'item58', 'item686'],
-      comics: ['item412', 'item51', 'ditem68'],
-      crime: ['item432', 'eitem544', 'item65']
+      comedy_section_1: ['comedy_section_1_Item_1', 'comedy_section_1_Item_2', 'comedy_section_1_Item_3'],
+      comedy_section_2: ['comedy_section_2_Item_1', 'comedy_section_2_Item_2', 'comedy_section_2_Item_3'],
+      comedy_section_3: ['comedy_section_3_Item_1', 'comedy_section_3_Item_2', 'comedy_section_3_Item_3']
     },
     drama: {
-      satire: ['item7123', 'item844', 'item923'],
-      sitcoms: ['item714', 'fitem85', 'item596'],
-      parodies: ['item733', 'item8564', 'item6966']
+      drama_section_1: ['drama_section_1_Item_1', 'drama_section_1_Item_2', 'drama_section_1_Item_3'],
+      drama_section_2: ['drama_section_2_Item_1', 'drama_section_2_Item_2', 'drama_section_2_Item_3'],
+      drama_section_3: ['drama_section_3_Item_1', 'drama_section_3_Item_2', 'drama_section_3_Item_3']
     },
     fantasy: {
-      romantic: ['item110', 'item111', 'item112'],
-      dark: ['item120', 'item131', 'item124'],
-      fairytail: ['item105', 'item116', 'item176']
+      fantasy_section_1: ['fantasy_section_1_Item_1', 'fantasy_section_1_Item_2', 'fantasy_section_1_Item_3'],
+      fantasy_section_2: ['fantasy_section_2_Item_1', 'fantasy_section_2_Item_2', 'fantasy_section_2_Item_3'],
+      fantasy_section_3: ['fantasy_section_3_Item_1', 'fantasy_section_3_Item_2', 'fantasy_section_3_Item_3']
     },
     horror: {
-      monster: ['item1533', 'item123', 'item1235'],
-      paranormal: ['item1353', 'item142', 'item135'],
-      psyhological: ['item133', 'item156', 'item1235']
+      horror_section_1: ['horror_section_1_Item_1', 'horror_section_1_Item_2', 'horror_section_1_Item_3'],
+      horror_section_2: ['horror_section_2_Item_1', 'horror_section_2_Item_2', 'horror_section_2_Item_3'],
+      horror_section_3: ['horror_section_3_Item_1', 'horror_section_3_Item_2', 'horror_section_3_Item_3']
     },
   };
 
@@ -101,9 +98,7 @@ export default function App() {
       {/* <ToDoList /> */}
       {/* <NavigationMenu items={menuitems}/> */}
       <Provider store={store}>
-        <DraggableModalProvider>    
-          <WigetFilter data={filterData} />
-        </DraggableModalProvider>
+        <WigetFilter data={filterData} />
       </Provider>
     </div>
     

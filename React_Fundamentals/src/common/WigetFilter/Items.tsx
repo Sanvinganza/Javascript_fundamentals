@@ -4,38 +4,32 @@ import { Combobox, Multiselect } from "react-widgets/cjs";
 import { IItem } from "./Contexts";
 import { selectItem } from "./redux/actions";
 import { getItemsSelector } from "./selectors/Items/getItemsSelector";
-import { getValueItemSelector } from "./selectors/Items/getValueItemSelector";
+import { getIsItemSelectedSelector } from "./selectors/Items/getIsItemSelectedSelector";
 import { SearchOutlined } from '@ant-design/icons';
-import { getCompletedItemsSelector } from "./selectors/Items/getCompletedItemsSelector";
-import { useState } from "react";
+import { getSelectedItemsSelector } from "./selectors/Items/getSelectedItemsSelector";
+import { useCallback, useState } from "react";
 import { getReverseSortedDataSelector } from "./selectors/Items/getReverseSortedDataSelector";
 import { getSortedDataSelector } from "./selectors/Items/getSortedDataSelector";
-import { SortButton } from "./SortButton";
+import { SortButton, SortingMode } from "./SortButton";
 
-const arrayCompletedItems: Array<string> = [];
+const arraySelectedItems: Array<string> = [];
 
 const Item = ({item}: IItem) => {
-  const checked = useSelector(getValueItemSelector(item));
+  const checked = useSelector(getIsItemSelectedSelector(item));
   return <Checkbox checked={checked}>{item}</Checkbox>;
 };
-
-export enum sortingMode { 
-  reverseSorted = 'reverseSorted',
-  sorted = 'sorted',
-  unsorted = 'unsorted'
-}
 
 export function Items () {
   const dispatch = useDispatch();
 
-  const completedItems = useSelector(getCompletedItemsSelector()).map(completedItem => completedItem.name);
+  const selectedItems = useSelector(getSelectedItemsSelector()).map(selectedItem => selectedItem.name);
   
   const data = useSelector(getItemsSelector());
   const reverseSortedData = useSelector(getReverseSortedDataSelector());
   const sortedData = useSelector(getSortedDataSelector());
   
   const [selectFilter, setSelectFilter] = useState('');
-  const [mode, setMode] = useState(sortingMode.unsorted);
+  const [mode, setMode] = useState(SortingMode.unsorted);
 
   return (
     <>
@@ -56,16 +50,16 @@ export function Items () {
       <div className="items-container">
         <SearchOutlined />
         <Multiselect
-          onSelect={(item: string) => {
-            if(arrayCompletedItems.includes(item)) {
+          onSelect={useCallback((item: string) => {
+            if(arraySelectedItems.includes(item)) {
               dispatch(selectItem(item, false));
-              arrayCompletedItems.splice(arrayCompletedItems.indexOf(item), 1);
+              arraySelectedItems.splice(arraySelectedItems.indexOf(item), 1);
             } else {
               dispatch(selectItem(item, true));
-              arrayCompletedItems.push(item);
+              arraySelectedItems.push(item);
             }
-          }}
-          value={completedItems}
+          }, [data, reverseSortedData, sortedData])}
+          value={selectedItems}
           filter={selectFilter}
           showPlaceholderWithValues={true}
           showSelectedItemsInList={true}

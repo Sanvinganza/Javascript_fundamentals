@@ -1,6 +1,6 @@
 import { IState } from "../../redux/reducer";
 
-export const getValueContextSelector = (category: string) => {
+export const getIsContextSelectedSelector = (category: string) => {
   
   return (state: IState) => state.contexts
     .filter( context => context.category === category)[0]

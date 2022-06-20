@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setState } from './redux/actions';
 import { IData } from '../../App';
 import { Contexts } from './Contexts';
+import { DraggableModalProvider } from 'ant-design-draggable-modal';
 
 export interface IWigetFilterProps  {
     data: IData
@@ -47,7 +48,7 @@ export function WigetFilter ({data}: IWigetFilterProps) {
   };
 
   return (
-    <>
+    <DraggableModalProvider>
       <Button type="primary" onClick={showModal}>
           Open Filter
       </Button>
@@ -59,6 +60,6 @@ export function WigetFilter ({data}: IWigetFilterProps) {
       >
         <Contexts />
       </DraggableModal>
-    </>
+    </DraggableModalProvider>
   );
 }

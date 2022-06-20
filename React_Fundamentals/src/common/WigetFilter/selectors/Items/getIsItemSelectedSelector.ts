@@ -1,6 +1,6 @@
 import { IState } from "../../redux/reducer";
 
-export const getValueItemSelector = (name: string) => {
+export const getIsItemSelectedSelector = (name: string) => {
   return (state: IState) => state.contexts
     .map(context => context.dimensions )
     .flat(2)
