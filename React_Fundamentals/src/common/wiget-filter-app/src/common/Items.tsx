@@ -1,16 +1,16 @@
-import { Checkbox } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Combobox, Multiselect } from "react-widgets/cjs";
 import { IItem } from "./Contexts";
-import { selectItem } from "./redux/actions";
 import { getItemsSelector } from "./selectors/Items/getItemsSelector";
 import { getIsItemSelectedSelector } from "./selectors/Items/getIsItemSelectedSelector";
-import { SearchOutlined } from '@ant-design/icons';
 import { getSelectedItemsSelector } from "./selectors/Items/getSelectedItemsSelector";
 import { useCallback, useState } from "react";
 import { getReverseSortedDataSelector } from "./selectors/Items/getReverseSortedDataSelector";
 import { getSortedDataSelector } from "./selectors/Items/getSortedDataSelector";
 import { SortButton, SortingMode } from "./SortButton";
+import { selectItem } from "./redux/actions";
+import { IItems } from "./redux/reducer";
+import { Checkbox } from "antd";
 
 const arraySelectedItems: Array<string> = [];
 
@@ -22,7 +22,7 @@ const Item = ({item}: IItem) => {
 export function Items () {
   const dispatch = useDispatch();
 
-  const selectedItems = useSelector(getSelectedItemsSelector()).map(selectedItem => selectedItem.name);
+  const selectedItems = useSelector(getSelectedItemsSelector()).map((selectedItem: IItems) => selectedItem.name);
   
   const data = useSelector(getItemsSelector());
   const reverseSortedData = useSelector(getReverseSortedDataSelector());
@@ -48,7 +48,6 @@ export function Items () {
         />
       </div>
       <div className="items-container">
-        <SearchOutlined />
         <Multiselect
           onSelect={useCallback((item: string) => {
             if(arraySelectedItems.includes(item)) {

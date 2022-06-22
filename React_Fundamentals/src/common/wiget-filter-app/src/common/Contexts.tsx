@@ -2,11 +2,12 @@ import { Checkbox } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Multiselect } from 'react-widgets/cjs';
 import { Dismensions } from './Dimensions';
-import { selectContext } from './redux/actions';
 import { getSelectedContextsSelector } from './selectors/Contexts/getSelectedContextsSelector';
 import { getContextsSelector } from './selectors/Contexts/getContextsSelector';
 import { getIsContextSelectedSelector } from './selectors/Contexts/getIsContextSelectedSelector';
 import { useCallback, useMemo } from 'react';
+import { selectContext } from './redux/actions';
+import { IContexts } from './redux/reducer';
 
 export interface IItem {
   item: string
@@ -24,7 +25,7 @@ export function Contexts () {
   const dispatch = useDispatch();
 
   const contexts = useSelector(getContextsSelector());
-  const memoContexts = useMemo(() => contexts.map(item => item.category), contexts);
+  const memoContexts = useMemo(() => contexts.map((item: IContexts) => item.category), contexts);
   
   const selectedContexts = useSelector(getSelectedContextsSelector());
 

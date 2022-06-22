@@ -5,12 +5,12 @@ interface ISortButtonProps {
   mode: string,
   setMode: Dispatch<SetStateAction<SortingMode>>;
 }
+
 export enum SortingMode { 
   reverseSorted = 'reverseSorted',
   sorted = 'sorted',
   unsorted = 'unsorted'
 }
-
 
 export function SortButton ({mode, setMode}: ISortButtonProps) {
 
@@ -26,7 +26,7 @@ export function SortButton ({mode, setMode}: ISortButtonProps) {
     >
       {mode === SortingMode.sorted? 
         '[A-Z]' : mode === SortingMode.reverseSorted? 
-          '[Z-A]' : '[AxZ]'}
+          '[Z-A]' : <span style={{color: '#999999'}}>[A-Z]</span>}
     </Button>
   );
 }

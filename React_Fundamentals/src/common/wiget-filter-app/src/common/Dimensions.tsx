@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Multiselect } from 'react-widgets/cjs';
 import { IItem } from './Contexts';
 import { Items } from './Items';
-import { selectDimension } from './redux/actions';
 import { getSelectedDimensionsSelector } from './selectors/Dimensions/getSelectedDimensionsSelector';
 import { getDimensionsSelector } from './selectors/Dimensions/getDimensionsSelector';
 import { getIsDimensionSelectedSelector } from './selectors/Dimensions/getIsDimensionSelectedSelector';
 import { useCallback, useMemo } from 'react';
+import { selectDimension } from './redux/actions';
+import { IDimension } from './redux/reducer';
 
 const arraySelectedDimensions: Array<string> = [];
 
@@ -22,7 +23,7 @@ export function Dismensions () {
 
   const dimensions = getDimensionsSelector();
   const selectedDimensions = getSelectedDimensionsSelector();
-  const memoDimensions = useMemo(() => dimensions.map(dimension => dimension.subcategory), [dimensions]);
+  const memoDimensions = useMemo(() => dimensions.map((dimension: IDimension) => dimension.subcategory), [dimensions]);
   return (
     <>
       <h2>DISMENSIONS</h2> 
@@ -35,8 +36,8 @@ export function Dismensions () {
             dispatch(selectDimension(item, true));
             arraySelectedDimensions.push(item);
           }
-        }, [])}
-        value={selectedDimensions.map(selectedDimension => selectedDimension.subcategory)}
+        }, [memoDimensions])}
+        value={selectedDimensions.map((selectedDimension: IDimension) => selectedDimension.subcategory)}
         showSelectedItemsInList={true}
         data={memoDimensions}
         renderListItem={({item}: IItem) => <CheckboxDimension item={item}/>}

@@ -3,10 +3,10 @@ import * as React from 'react';
 import 'antd/dist/antd.css';
 import { DraggableModal } from 'ant-design-draggable-modal';
 import { useDispatch } from 'react-redux';
-import { setState } from './redux/actions';
-import { IData } from '../../App';
 import { Contexts } from './Contexts';
 import { DraggableModalProvider } from 'ant-design-draggable-modal';
+import { IData } from '../App';
+import { setState } from './redux/actions';
 
 export interface IWigetFilterProps  {
     data: IData
