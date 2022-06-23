@@ -1,12 +1,11 @@
 import { Button } from 'antd';
 import * as React from 'react';
 import 'antd/dist/antd.css';
-import { DraggableModal } from 'ant-design-draggable-modal';
 import { useDispatch } from 'react-redux';
 import { Contexts } from './Contexts';
-import { DraggableModalProvider } from 'ant-design-draggable-modal';
 import { IData } from '../App';
 import { setState } from './redux/actions';
+import { DraggableModal, DraggableModalProvider } from 'ant-design-draggable-modal';
 
 export interface IWigetFilterProps  {
     data: IData
@@ -52,7 +51,7 @@ export function WigetFilter ({data}: IWigetFilterProps) {
       <Button type="primary" onClick={showModal}>
           Open Filter
       </Button>
-      <DraggableModal 
+      <DraggableModal
         footer={false} 
         title="FILTERS" 
         visible={isModalVisible} 
