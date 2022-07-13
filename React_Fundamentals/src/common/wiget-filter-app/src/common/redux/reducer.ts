@@ -26,7 +26,7 @@ export interface IState {
   contexts: IContexts[]
 }
 
-const initialState: IState = {
+export const initialState: IState = {
   contexts: []
 };
 

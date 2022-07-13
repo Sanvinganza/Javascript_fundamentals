@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Multiselect } from "react-widgets/cjs";
+import { FilterFunction } from "react-widgets/cjs/Filter";
 import { IItem } from "./Contexts";
 import { IState } from "./redux/reducer";
 
@@ -9,7 +10,7 @@ interface IFilterMultiselectProps {
   value?: string[],
   showPlaceholderWithValues?: boolean,
   showSelectedItemsInList?: boolean,
-  filter?: string,
+  filter?: boolean | "eq" | "contains" | "startsWith" | FilterFunction<string> | null,
   open?: boolean,
   Item: ({item}: IItem) => JSX.Element,
   selectedItems?: string[],

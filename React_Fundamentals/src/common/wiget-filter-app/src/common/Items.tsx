@@ -20,7 +20,7 @@ export function Items () {
   const reverseSortedData = useSelector(getReverseSortedDataSelector());
   const sortedData = useSelector(getSortedDataSelector());
   
-  const [selectFilter, setSelectFilter] = useState('startsWith');
+  const [selectFilter, setSelectFilter] = useState<'startsWith' | 'eq' | 'contains'>('startsWith');
   const [mode, setMode] = useState(SortingMode.unsorted);
 
   const Item = ({item}: IItem) => {

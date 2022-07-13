@@ -41,6 +41,7 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
       <fieldset>
         <legend>Search Input</legend>
         <input
+          aria-label="search-input"
           id="search-input"
           placeholder={placeholder}
           onChange={onChange}

@@ -8,7 +8,7 @@ import { setState } from './redux/actions';
 import { DraggableModal, DraggableModalProvider } from 'ant-design-draggable-modal';
 
 export interface IWigetFilterProps  {
-    data: IData
+  data: IData
 }
 
 export const dataToState = (data: IData) => {
