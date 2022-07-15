@@ -1,10 +1,10 @@
 // import { ProgressBarForm } from './common/ProgressBar/ProgressBarForm';
-// import { SearchInputForm } from './common/SearchInput/SearchInputForm';
+import { SearchInputForm } from './common/SearchInput/SearchInputForm';
 import { ReactNode } from 'react';
 // import { useParams } from 'react-router';
 // import { NavigationMenu } from './common/NavigationMenu';
 // import { About, AboutDiscription, Home, HomeDiscription, News } from './common/NavigationMenu/components';
-import ToDoList from './common/ToDoList';
+// import ToDoList from './common/ToDoList';
 import "react-widgets/scss/styles.scss";
 
 export interface IMenuItem {
@@ -14,7 +14,7 @@ export interface IMenuItem {
 }
 
 export default function App() {
-  // const array = ['word', 'noun', 'hello', 'world'];
+  const array = ['word', 'noun', 'hello', 'world'];
   
   // interface INewsitem {
   //   text: string
@@ -59,8 +59,8 @@ export default function App() {
 
   return (
     // <ProgressBarForm />
-    // <SearchInputForm array={array} />
-    <ToDoList />
+    <SearchInputForm array={array} />
+    // <ToDoList />
     // <NavigationMenu items={menuitems}/>
   );
 }
