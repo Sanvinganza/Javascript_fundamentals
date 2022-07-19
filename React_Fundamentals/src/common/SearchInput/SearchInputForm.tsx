@@ -8,14 +8,14 @@ export interface SearchInputFormProps {
 
 export function SearchInputForm({array}:SearchInputFormProps) {
   const [searchResult, setSearchResult] = useState(array);
-  const [mode, setMode] = useState(SearchInputModes.withDelay);
+  const [mode, setMode] = useState(SearchInputModes.immediate);
 
   const onSearchHandler = useCallback((value) => {
     setSearchResult(() => array.filter(el => el.includes(value)));
   }, [array]);
 
   const memoArrayResult = useMemo(() => searchResult.map(result => {
-    return (<p key={result}>{result}</p>);
+    return (<li key={result}>{result}</li>);
   }), [searchResult]);
 
   return (
@@ -41,7 +41,7 @@ export function SearchInputForm({array}:SearchInputFormProps) {
           setMode(SearchInputModes.onPress)
         } />
       </form>
-      {memoArrayResult}
+      <ul>{memoArrayResult}</ul>
     </>
   );
 }
