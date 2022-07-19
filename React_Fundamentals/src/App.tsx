@@ -1,11 +1,10 @@
 // import { ProgressBarForm } from './common/ProgressBar/ProgressBarForm';
-import { SearchInputForm } from './common/SearchInput/SearchInputForm';
+// import { SearchInputForm } from './common/SearchInput/SearchInputForm';
 import { ReactNode } from 'react';
-// import { useParams } from 'react-router';
-// import { NavigationMenu } from './common/NavigationMenu';
-// import { About, AboutDiscription, Home, HomeDiscription, News } from './common/NavigationMenu/components';
+import { useParams } from 'react-router';
+import { NavigationMenu } from './common/NavigationMenu';
+import { About, AboutDiscription, Home, HomeDiscription, News } from './common/NavigationMenu/components';
 // import ToDoList from './common/ToDoList';
-import "react-widgets/scss/styles.scss";
 
 export interface IMenuItem {
   element: ReactNode,
@@ -14,53 +13,54 @@ export interface IMenuItem {
 }
 
 export default function App() {
-  const array = ['word', 'noun', 'hello', 'world'];
+  // const array = ['word', 'noun', 'hello', 'world'];
+  interface INewsItem {
+    text: string
+  }
+  const NewsItem = ({text}: INewsItem) => {
+    const param = useParams();
+    return <h3>{text}{param.id}</h3>;
+  };
   
-  // interface INewsitem {
-  //   text: string
-  // }
-  // const NewsItem = ({text}: INewsitem) => {
-  //   const param = useParams();
-  //   return <h3>{text}{param.id}</h3>;
-  // };
-  
-  // const menuitems: IMenuItem[] = [
-  //   {
-  //     element: <Home />,
-  //     path: "home",
-  //     items: [
-  //       {
-  //         element: <HomeDiscription />,
-  //         path: "discription"
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     element: <News />,
-  //     path: "news",
-  //     items: [
-  //       {
-  //         element: <NewsItem text="first news" />, 
-  //         path: ":id"
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     element: <About />,
-  //     path: "about",
-  //     items: [
-  //       {
-  //         element: <AboutDiscription />,
-  //         path: "discription"
-  //       }
-  //     ]
-  //   }
-  // ];
+  const menuItems: IMenuItem[] = [
+    {
+      element: <Home />,
+      path: "home",
+      items: [
+        {
+          element: <HomeDiscription />,
+          path: "discription"
+        }
+      ]
+    },
+    {
+      element: <News />,
+      path: "news",
+      items: [
+        {
+          element: <NewsItem text="first news" />, 
+          path: ":id"
+        }
+      ]
+    },
+    {
+      element: <About />,
+      path: "about",
+      items: [
+        {
+          element: <AboutDiscription />,
+          path: "discription"
+        }
+      ]
+    }
+  ];
 
   return (
-    // <ProgressBarForm />
-    <SearchInputForm array={array} />
-    // <ToDoList />
-    // <NavigationMenu items={menuitems}/>
+    <div className="app">
+      {/* <ProgressBarForm /> */}
+      {/* <SearchInputForm array={array} /> */}
+      {/* <ToDoList /> */}
+      <NavigationMenu items={menuItems}/>
+    </div>
   );
 }

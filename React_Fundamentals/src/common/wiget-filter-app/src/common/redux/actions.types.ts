@@ -1,4 +1,0 @@
-export const SET_STATE = 'SET_STATE';
-export const SELECT_CONTEXT = 'SELECT_CONTEXT';
-export const SELECT_DIMENSION = 'SELECT_DIMENSION';
-export const SELECT_ITEM = 'SELECT_ITEM';

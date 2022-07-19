@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from "react";
 
-export enum ESearchInputModes {
+export enum ESearchIputModes {
   immediate = "immediate",
   onPress = "onPress",
   withDelay = "withDelay"
@@ -8,7 +8,7 @@ export enum ESearchInputModes {
 
 interface ISearchInput {
   placeholder: string,
-  mode: ESearchInputModes,
+  mode: ESearchIputModes,
   onSearch: (value: string) => void
 }
 
@@ -16,7 +16,7 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
   const [searchValue, setSearchValue] = useState("");
   
   const handleKeyDown = useCallback((e) => {
-    if(e.key.toString() === 'Enter' && ESearchInputModes.onPress === mode) {
+    if(e.key.toString() === 'Enter' && ESearchIputModes.onPress === mode) {
       onSearch(searchValue);
     }
 
@@ -24,13 +24,13 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
 
   const onChange = useCallback((e) => {
     switch (mode) {
-    case ESearchInputModes.immediate:
+    case ESearchIputModes.immediate:
       onSearch(e.target.value);
       break;
-    case ESearchInputModes.withDelay:
+    case ESearchIputModes.withDelay:
       setTimeout(() => onSearch(e.target.value), 1000);
       break;
-    case ESearchInputModes.onPress:
+    case ESearchIputModes.onPress:
       setSearchValue(e.target.value);
       break;
     }
@@ -41,7 +41,6 @@ export const SearchInput: FC<ISearchInput> = ({ placeholder, mode, onSearch }: I
       <fieldset>
         <legend>Search Input</legend>
         <input
-          aria-label="search-input"
           id="search-input"
           placeholder={placeholder}
           onChange={onChange}
