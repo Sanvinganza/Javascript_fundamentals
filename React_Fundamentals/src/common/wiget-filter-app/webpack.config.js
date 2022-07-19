@@ -80,6 +80,7 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
+    
   },
   resolve: {
     extensions: [
