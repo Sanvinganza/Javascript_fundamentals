@@ -13,7 +13,6 @@ export const ProgressBarForm = () => {
       <legend>Progress bar</legend>
       <input
         className="input_progress_bar"
-        data-testid="input_progress_bar"
         type="number"
         pattern="\d+"
         min={0}

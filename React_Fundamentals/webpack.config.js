@@ -31,7 +31,7 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.scss$/,
         use: [
           'style-loader',
           'css-loader',
@@ -80,6 +80,7 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
+    
   },
   resolve: {
     extensions: [
