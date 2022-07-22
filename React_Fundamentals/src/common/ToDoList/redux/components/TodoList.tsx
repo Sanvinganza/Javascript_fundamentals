@@ -48,7 +48,7 @@ const TodoList = () => {
   return (
     <div className="todo-list">
       {isLoading? <Loading />:
-       (memoList.length? memoList: 'List is empty...')}
+        (memoList.length? memoList: 'List is empty...')}
       <div className="footer">
         <div className="items-left">{incompletedItems.length} items left</div>
         
