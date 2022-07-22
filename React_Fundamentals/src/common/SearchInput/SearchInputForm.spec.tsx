@@ -69,7 +69,7 @@ describe('SearchInputForm component', () => {
 
     userEvent.click(input);
     userEvent.type(input, 'w');
-    fireEvent.keyDown(input, {key: 'Enter', code: 'Enter', charCode: 13})
+    fireEvent.keyDown(input, {key: 'Enter', code: 'Enter', charCode: 13});
     
     expect(screen.getAllByRole('listitem').length).toEqual(2);
     expect(asFragment()).toMatchSnapshot();
